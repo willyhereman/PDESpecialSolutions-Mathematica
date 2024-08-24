@@ -1,0 +1,642 @@
+(************** Content-type: application/mathematica **************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     21255,        527]*)
+(*NotebookOutlinePosition[     21938,        550]*)
+(*  CellTagsIndexPosition[     21894,        546]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[
+    \(SetDirectory["\<d:\\yourdirectory\>"]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ 
+      yourdirectory\ should\ be\ the\ directory\ where\ the\ code\ and\ \
+notebooks\ \(\(reside\)\(.\)\)\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(<< PDESpecialSolutions.m\)], "Input"],
+
+Cell[BoxData[
+    \(\(\( (*\ 
+      Be\ \(aware : \ sometimes\ you\ have\ to\ retype\ the\ << \ above\), \ 
+      due\ to\ a\ small\ parsing\ error\ *) \)\(\[IndentingNewLine]\)\( (*\ 
+      in\ Mathematica\ *) \)\(\[IndentingNewLine]\)\( (*\ 
+      Never\ read\ in\ codes\ twice . \ 
+          Quit\ the\ kernel\ prior\ to\ any\ new\ \(\(attempt\)\(.\)\)\ *) \)\
+\)\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell["Standard Cases", "Subtitle"],
+
+Cell[BoxData[
+    \( (*\ KdV\ Equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], \ t]\  + \ 6*alpha*u[x, t]*D[u[x, t], x]\  + \ 
+          D[u[x, t], {x, 3}]\  \[Equal] \ 0, \ 
+      u[x, t], \ {x, t}, \ {alpha}, \ Form \[Rule] Tanh, \ 
+      Verbose\  \[Rule] \ True, \ SymbolicTest\  \[Rule] \ True, \ 
+      NumericTest\  \[Rule] \ True, \ 
+      HighestOrderFirst\  \[Rule] \ False]\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\[IndentingNewLine]\)\( (*\ 
+      Boussinesq\ Equation\ \((single\ equation)\)\ *) \)\)\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x, t], {t, 2}] - D[u[x, t], {x, 2}] + 
+            3*u[x, t]*D[u[x, t], {x, 2}] + 3*\((D[u[x, t], x])\)^2 + 
+            alpha*D[u[x, t], {x, 4}]\  \[Equal] \ 0}, \ {u[x, t]}, \ {x, 
+        t}, \ {alpha}, \ Verbose \[Rule] True, \ Form \[Rule] Tanh, \ 
+      SymbolicTest \[Rule] True, \ NumericTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\[IndentingNewLine]\)\( (*\ 
+      2. \ \ The\ Boussinesq\ System\ *) \)\)\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x, t], t] + D[v[x, t], x]\  \[Equal] \ 0, \ 
+        D[v[x, t], \ t] + D[u[x, t], \ x] - 3*u[x, t]*D[u[x, t], x] - 
+            alpha*D[u[x, t], {x, 3}]\  \[Equal] \ 0}, \ {u[x, t], 
+        v[x, t]}, \ {x, t}, \ {alpha}, \ Verbose \[Rule] True, \ 
+      Form \[Rule] Tanh, \ SymbolicTest \[Rule] True]\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\[IndentingNewLine]\)\( (*\ 
+      6.3\ \ Coupled\ KdV\ Equations\ *) \)\)\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{\[IndentingNewLine]D[u[x, t], 
+              t]\  - \[IndentingNewLine]alpha\ *\ \((6\ *\ u[x, t]\ *\ 
+                    D[u[x, t], x]\ \  + \ \ D[
+                    u[x, t], \ {x, 3}])\)\  + \[IndentingNewLine]2\ *\ 
+              beta\ *\ v[x, t]*\ D[v[x, t], \ x]\ \  \[Equal] 
+          0, \[IndentingNewLine]D[v[x, t], t]\  + \ \[IndentingNewLine]3*
+              u[x, t]*D[v[x, t], x]\  + \[IndentingNewLine]D[
+              v[x, t], {x, 3}]\  \[Equal] \ 
+          0\[IndentingNewLine]}, \[IndentingNewLine]{u[x, t], \ v[x, t]}, {x, 
+        t}, {alpha, \ beta}, \ Form \[Rule] Sech, \ 
+      Verbose\  \[Rule] \ True, \ NumericTest \[Rule] True, \ 
+      SymbolicTest\  \[Rule] \ True, \ 
+      HighestOrderFirst\  \[Rule] \ False]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ 3. \ \ Modified\ 3  D\ KdV\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, y, z, t], \ t]\  + \ 6*u[x, y, z, t]^2*D[u[x, y, z, t], x]\  + \ 
+          D[u[x, y, z, t], {x, 1}, {y, 1}, {z, 1}]\  \[Equal] \ 0, \ 
+      u[x, y, z, t], \ {x, y, z, t}, \ {}, \ Form \[Rule] Sech, \ 
+      Verbose \[Rule] True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ 4. \ \ Gao\ and\ Tian\ system\ \ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x, t], \ t]\  - \ D[u[x, t], \ x]\  - \ 
+            2*v[x, t]\  \[Equal] \ 0, \ 
+        D[v[x, t], \ t]\  + \ 2*u[x, t]*w[x, t]\  \[Equal] \ 0, \ 
+        D[w[x, t], \ t]\  + \ 2*u[x, t]*v[x, t]\  \[Equal] \ 0}, \ {u[x, 
+          t], \ v[x, t], \ w[x, t]}, \ {x, t}, \ {}, \ 
+      Form \[Rule] SechTanh]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ 6.1\ \ Zakharov - Kuznetsov\ KdV - type\ equations\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, y, z, t], t]\  + \ \[IndentingNewLine]alpha*u[x, y, z, t]*
+            D[u[x, y, z, t], x]\  + \[IndentingNewLine]D[
+            u[x, y, z, t], \ {x, 3}] + \[IndentingNewLine]D[u[x, y, z, t], \ 
+            y, \ y, y]\  + \[IndentingNewLine]D[u[x, y, z, t], \ z, \ z, \ 
+            z]\  \[Equal] 0, \[IndentingNewLine]u[x, y, z, 
+        t], \[IndentingNewLine]{x, y, z, 
+        t}, \[IndentingNewLine]{alpha}]\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, y, z, t], t]\  + \ \[IndentingNewLine]alpha*u[x, y, z, t]*
+            D[u[x, y, z, t], x]\  + \[IndentingNewLine]D[
+            u[x, y, z, t], \ {x, 3}] + \[IndentingNewLine]D[u[x, y, z, t], \ 
+            x, \ y, y]\  + \[IndentingNewLine]D[u[x, y, z, t], \ x, \ z, \ 
+            z]\  \[Equal] 0, \[IndentingNewLine]u[x, y, z, 
+        t], \[IndentingNewLine]{x, y, z, t}, \[IndentingNewLine]{alpha}, \ 
+      Form \[Rule] Sech]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ 
+      Modified\ KdV - \(ZK\ --\)\ Das\ and\ Verheest\ \ Equation\ *) \)], \
+"Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, y, z, t], \ t]\  + \[IndentingNewLine]alpha\ *\ 
+            u[x, y, z, t]\ ^\ 2\ *\ 
+            D[u[x, y, z, t], x]\  + \ \[IndentingNewLine]D[
+            u[x, y, z, t], \ {x, 3}] + \[IndentingNewLine]D[u[x, y, z, t], \ 
+            x, \ y, y]\  + \[IndentingNewLine]D[u[x, y, z, t], \ x, \ z, \ 
+            z]\  \[Equal] 0, \[IndentingNewLine]u[x, y, z, 
+        t], \[IndentingNewLine]{x, y, z, 
+        t}, \[IndentingNewLine]{alpha}]\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, y, z, t], \ t]\  + \[IndentingNewLine]alpha\ *\ 
+            u[x, y, z, t]\ ^\ 2\ *\ 
+            D[u[x, y, z, t], x]\  + \ \[IndentingNewLine]D[
+            u[x, y, z, t], \ {x, 3}] + \[IndentingNewLine]D[u[x, y, z, t], \ 
+            x, \ y, y]\  + \[IndentingNewLine]D[u[x, y, z, t], \ x, \ z, \ 
+            z]\  \[Equal] 0, \[IndentingNewLine]u[x, y, z, 
+        t], \[IndentingNewLine]{x, y, z, t}, \[IndentingNewLine]{alpha}, \ 
+      Form \[Rule] Sech]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ 6.2\ Generalized\ Kuramoto - Sivashinsky\ Equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\ \)\(PDESpecialSolutions[\[IndentingNewLine]D[u[x, t], 
+            t]\  + \ \[IndentingNewLine]u[x, t]*\ 
+            D[u[x, t], x]\  + \ \[IndentingNewLine]D[
+            u[x, t], {x, 2}] + \[IndentingNewLine]alpha*\ 
+            D[u[x, t], {x, 3}]\  + \ \[IndentingNewLine]D[
+            u[x, t], {x, 4}]\  \[Equal] \ 0, \[IndentingNewLine]u[x, 
+        t], \[IndentingNewLine]{x, 
+        t}, \[IndentingNewLine]{alpha}, \ \ Form\  \[Rule] \ 
+        Tanh]\)\)\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ 6.3\ \ Coupled\ KdV\ Equations\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{\[IndentingNewLine]D[u[x, t], 
+              t]\  - \[IndentingNewLine]alpha\ *\ \((6\ *\ u[x, t]\ *\ 
+                    D[u[x, t], x]\ \  + \ \ D[
+                    u[x, t], \ {x, 3}])\)\  + \[IndentingNewLine]2\ *\ 
+              beta\ *\ v[x, t]*\ D[v[x, t], \ x]\ \  \[Equal] 
+          0, \[IndentingNewLine]D[v[x, t], t]\  + \ \[IndentingNewLine]3*
+              u[x, t]*D[v[x, t], x]\  + \[IndentingNewLine]D[
+              v[x, t], {x, 3}]\  \[Equal] \ 
+          0\[IndentingNewLine]}, \[IndentingNewLine]{u[x, t], \ v[x, t]}, {x, 
+        t}, {alpha, \ beta}, \ Form \[Rule] Cn, \ NumericTest \[Rule] True, \ 
+      Verbose \[Rule] True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Another\ coupled\ \(KdV\ --\)\ due\ to\ Guha - Roy\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{\[IndentingNewLine]D[u[x, t], 
+              t]\  + \ \[IndentingNewLine]\ \[Alpha]\ *\ v[x, t]*
+              D[v[x, t], x]\  + \ \[IndentingNewLine]\[Beta]*u[x, t]*
+              D[u[x, t], x]\  + \[IndentingNewLine]\[Gamma]\ *\ 
+              D[u[x, t], {x, 3}]\  \[Equal] 
+          0, \[IndentingNewLine]D[v[x, t], 
+              t]\  + \ \[IndentingNewLine]\[Delta]*
+              D[u[x, t]*v[x, t], x]\  + \[IndentingNewLine]\[Epsilon]*v[x, t]*
+              D[v[x, t], x]\  \[Equal] 
+          0\[IndentingNewLine]}, \[IndentingNewLine]{u[x, t], \ 
+        v[x, t]}, \[IndentingNewLine]{x, 
+        t}, \[IndentingNewLine]{\[Alpha], \ \[Beta], \ \[Gamma]\ , \ \
+\[Delta], \[Epsilon]}, \ \[IndentingNewLine]Form \[Rule] Sech, \ 
+      Verbose \[Rule] True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ 6.4\ Fisher\ and\ FitzHugh - 
+        Nagumo\ \(\(Equations\)\(.\)\)\ *) \)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Fisher\ Equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\ \)\(PDESpecialSolutions[{\[IndentingNewLine]D[u[x, t], 
+              t]\  - \[IndentingNewLine]D[
+              u[x, t], {x, 2}]\  - \[IndentingNewLine]u[x, 
+                t]*\((1 - u[x, t])\)\  \[Equal] \ 
+          0\[IndentingNewLine]}, \[IndentingNewLine]{u[x, t]}, {x, 
+        t}, {}]\)\)\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ FitzHugh - Nagumo\ Equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{\[IndentingNewLine]beta*
+              D[v[z], z]\  + \ \[IndentingNewLine]Sqrt[2]*
+              D[v[z], \ {z, 2}]\  - \[IndentingNewLine]Sqrt[2]*
+              v[z]*\((1 - Sqrt[2]*v[z])\)*\((alpha - 
+                  Sqrt[2]*v[z])\)\  \[Equal] \ 
+          0\[IndentingNewLine]}, \[IndentingNewLine]{v[
+          z]}, \[IndentingNewLine]{z}, \[IndentingNewLine]{alpha, \ beta}, \ 
+      NumericTest \[Rule] True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ 6.5\ A\ Degenerate\ Hamiltonian\ System\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{\[IndentingNewLine]D[u[x, t], 
+              t]\  - \[IndentingNewLine]D[u[x, t], 
+              x]\  - \[IndentingNewLine]2*v[x, t]\  \[Equal] \ 
+          0, \[IndentingNewLine]D[v[x, t], t]\  - \[IndentingNewLine]2*
+              epsilon*u[x, t]*v[x, t]\  \[Equal] 
+          0\[IndentingNewLine]}, \[IndentingNewLine]{u[x, t], v[x, t]}, {x, 
+        t}, {epsilon}]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ 6.6\ The\ Combined\ KdV - mKdV\ equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t]\  + \[IndentingNewLine]6*alpha*u[x, t]*
+            D[u[x, t], x]\  + \[IndentingNewLine]6*beta*u[x, t]^2*
+            D[u[x, t], x]\  + \[IndentingNewLine]gamma*
+            D[u[x, t], \ {x, 3}]\  \[Equal] 0, \[IndentingNewLine]u[x, 
+        t], {x, t}, {alpha, \ beta, \ gamma}]\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t]\  + \[IndentingNewLine]6*alpha*u[x, t]*
+            D[u[x, t], x]\  + \[IndentingNewLine]6*beta*u[x, t]^2*
+            D[u[x, t], x]\  + \[IndentingNewLine]gamma*
+            D[u[x, t], \ {x, 3}]\  \[Equal] 0, \[IndentingNewLine]u[x, 
+        t], {x, t}, {alpha, \ beta, \ gamma}, \ Form \[Rule] Sech]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Duffing\ Equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x], \ {x, \ 2}]\  + \ u[x]\  + \ 
+            alpha*u[x]^3\  \[Equal] \ 0}, \ u[x], \ {x}, \ {alpha}, \ 
+      Form \[Rule] Sn, \ Verbose \[Rule] True, \ 
+      SymbolicTest \[Rule] True]\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\[IndentingNewLine]\)\(PDESpecialSolutions[{D[
+              u[x], \ {x, \ 2}]\  + \ u[x]\  + \ alpha*u[x]^3\  \[Equal] \ 
+          0}, \ u[x], \ {x}, \ {alpha}, \ Form \[Rule] Cn, \ 
+      Verbose \[Rule] True, \ SymbolicTest \[Rule] True]\)\)\)], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["China", "Subtitle"],
+
+Cell[BoxData[
+    \( (*\ 5.10\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t]\  + \ u[x, t]*D[u[x, t], x]\  + 
+          p*D[u[x, t], \ {x, \ 3}]\  \[Equal] 0, \ 
+      u[x, t], \ {x, t}, \ {p}, \ Form\  \[Rule] \ sn, \ 
+      Verbose\  \[Rule] \ True, \ NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ 5.16\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], {t, 2}]\  + 2*q*\ u[x, t]*D[u[x, t], {x, 2}]\  + \ 
+          2*q*\((D[u[x, t], \ x])\)^2\  + \ p*D[u[x, t], \ {x, 2}]\  + \ 
+          r*D[u[x, t], \ {x, \ 4}] \[Equal] 0, \ 
+      u[x, t], \ {x, t}, \ {p, q, r}, \ Verbose\  \[Rule] \ True, \ 
+      Form\  \[Rule] \ sn, \ NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ 5.17\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t]\  + u[x, t]*D[u[x, t], x]\  + \ D[u[x, t], \ x]\  - \ 
+          p*D[u[x, t], \ {x, 2}]\  - q*D[u[x, t], \ {x, \ 3}] \[Equal] 0, \ 
+      u[x, t], \ {x, t}, \ {p, q}, \ Verbose\  \[Rule] \ True, \ 
+      Form\  \[Rule] \ sn, \ NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \(\(\( (*\ 
+      5.17\ for\ tanh\ solutions\ \
+*) \)\(\[IndentingNewLine]\)\(PDESpecialSolutions[
+      D[u[x, t], t]\  + u[x, t]*D[u[x, t], x]\  + \ D[u[x, t], \ x]\  - \ 
+          p*D[u[x, t], \ {x, 2}]\  - q*D[u[x, t], \ {x, \ 3}] \[Equal] 0, \ 
+      u[x, t], \ {x, t}, \ {p, q}, \ Verbose\  \[Rule] \ True, \ 
+      Form\  \[Rule] \ tanh, \ NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\[IndentingNewLine]\)\( (*\ 
+      5.24\ *) \)\(\[IndentingNewLine]\)\(PDESpecialSolutions[{D[u[x, t], 
+              t]\  + u[x, t]*D[u[x, t], x]\  + \ D[v[x, t], \ x]\  + 
+            s*D[u[x, t], \ {x, 2}] \[Equal] 
+          0, \ \[IndentingNewLine]D[v[x, t], t]\  + u[x, t]*D[v[x, t], x] + 
+            v[x, t]*D[u[x, t], x]\  + \ r*D[v[x, t], \ {x, 2}]\  + 
+            p*D[u[x, t], \ {x, 3}] \[Equal] 0}, \ \[IndentingNewLine]\ {u[x, 
+          t], v[x, t]}, \ {x, t}, \ {p, r, s}, \ Verbose\  \[Rule] \ True, \ 
+      Form\  \[Rule] \ tanh, \ NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\[IndentingNewLine]\)\( (*\ 
+      5.29\ *) \)\(\[IndentingNewLine]\)\(PDESpecialSolutions[{D[u[x, t], 
+              t]\  + u[x, t]*D[u[x, t], x]\  + \ D[v[x, t], \ x]\  + 
+            q*D[D[u[x, t], \ {x, 2}], t] \[Equal] 
+          0, \ \[IndentingNewLine]D[v[x, t], t]\  + u[x, t]*D[v[x, t], x] + 
+            v[x, t]*D[u[x, t], x]\  + p*D[u[x, t], \ {x, 3}] \[Equal] 
+          0}, \ \[IndentingNewLine]\ {u[x, t], v[x, t]}, \ {x, t}, \ {p, 
+        q}, \ Verbose\  \[Rule] \ True, \ Form\  \[Rule] \ tanh, \ 
+      NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)\)\)], "Input"],
+
+Cell[BoxData[
+    \(\(\( (*\ 
+      5.29\ periodic\ *) \)\(\[IndentingNewLine]\)\(\(PDESpecialSolutions[{D[
+              u[x, t], t]\  + u[x, t]*D[u[x, t], x]\  + \ D[v[x, t], \ x]\  + 
+            q*D[D[u[x, t], \ {x, 2}], t] \[Equal] 
+          0, \ \[IndentingNewLine]D[v[x, t], t]\  + u[x, t]*D[v[x, t], x] + 
+            v[x, t]*D[u[x, t], x]\  + p*D[u[x, t], \ {x, 3}] \[Equal] 
+          0}, \ \[IndentingNewLine]\ {u[x, t], v[x, t]}, \ {x, t}, \ {p, 
+        q}, \ Verbose\  \[Rule] \ True, \ Form\  \[Rule] \ sn, \ 
+      NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)\(\[IndentingNewLine]\)
+    \)\)\)], "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Abbott", "Subtitle"],
+
+Cell[BoxData[
+    \( (*\ Example\ 1\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t] + \ u[x, t]*D[u[x, t], x] - 
+          D[u[x, t], \ {x, \ 5}]\  \[Equal] 0, \ u[x, t], \ {x, t}, \ {}, \ 
+      Form\  \[Rule] \ sn, \ Verbose\  \[Rule] \ True, \ 
+      NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 2\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t] + alpha*\ u[x, t]^2*D[u[x, t], x] - 
+          D[u[x, t], \ {x, \ 5}]\  \[Equal] 0, \ 
+      u[x, t], \ {x, t}, \ {alpha}, \ Form\  \[Rule] \ sn, \ 
+      Verbose\  \[Rule] \ True, \ NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 3\ \ Trouble\ with\ value\ of\ m[i] . \ 
+          So\ give\ value\ of\ m[i]\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t] - sigma*u[x, t]*D[u[x, t], x] + u[x, t]^3*D[u[x, t], x] - 
+          D[u[x, t], \ {x, \ 7}]\  \[Equal] 0, \ 
+      u[x, t], \ {x, t}, \ {sigma}, \ Form\  \[Rule] \ sn, \ 
+      Verbose\  \[Rule] \ True, \ NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 4\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], {t, 2}] - gamma*\ D[u[x, t], {x, 2}] + alpha*u[x, t] - \ 
+          beta*u[x, t]^2 \[Equal] 0, \ 
+      u[x, t], \ {x, t}, \ {alpha, beta, \ gamma}, \ Form\  \[Rule] \ sn, \ 
+      Verbose\  \[Rule] \ True, \ NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 5\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t] + u[x, t]*D[u[x, t], x] + D[u[x, t], {x, 2}] + 
+          sigma*\[IndentingNewLine]D[u[x, t], {x, 3}] + 
+          D[u[x, t], \ {x, \ 4}] + 
+          epsilon*D[u[x, t]*D[u[x, t], x], x]\  \[Equal] 0, \ 
+      u[x, t], \ {x, t}, \ {sigma, epsilon}, \ Form\  \[Rule] \ sn, \ 
+      Verbose\  \[Rule] \ True, \ NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\[IndentingNewLine]\)\( (*\ Example\ 6\ *) \)\)\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t] + u[x, t]*\ D[u[x, t], x] + D[u[x, t], {x, 3}] - 
+          D[u[x, t], {x, 5}] \[Equal] 0, \ u[x, t], \ {x, t}, \ {}, \ 
+      Form\  \[Rule] \ sn, \ Verbose\  \[Rule] \ True, \ 
+      NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 7\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t] + sigma*u[x, t]*D[u[x, t], x] + 
+          u[x, t]^2*D[u[x, t], x] + \[IndentingNewLine]D[u[x, t], {x, 3}] - 
+          D[u[x, t], \ {x, \ 5}] \[Equal] 0, \ 
+      u[x, t], \ {x, t}, \ {sigma}, \ Form\  \[Rule] \ sn, \ 
+      Verbose\  \[Rule] \ True, \ NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 8\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t] + 
+          D[6*u[x, t]^5 + 
+              10*alpha*\((u[x, t]^2*\ D[u[x, t], {x, 2}] + 
+                    u[x, t]*D[u[x, t], x]^2)\) + D[u[x, t], {x, 4}], 
+            x] \[Equal] 0, \ u[x, t], \ {x, t}, \ {alpha}, \ 
+      Form\  \[Rule] \ sn, \ Verbose\  \[Rule] \ True, \ 
+      NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 9\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t] + 
+          D[20*alpha*u[x, t]^7 + 
+              70*\((u[x, t]^4*\ D[u[x, t], {x, 2}] + 
+                    2*u[x, t]^3*D[u[x, t], x]^2)\) + \[IndentingNewLine]14*
+                alpha*\((u[x, t]^2*\ D[u[x, t], {x, 4}] + 
+                    3*u[x, t]*D[u[x, t], {x, 2}]^2 + \[IndentingNewLine]4*
+                      u[x, t]*\ D[u[x, t], x]*D[u[x, t], {x, 3}] + 
+                    5*D[u[x, t], {x, 2}]*
+                      D[u[x, t], x]^2)\) + \[IndentingNewLine]D[
+                u[x, t], {x, 6}], x] \[Equal] 0, \ 
+      u[x, t], \ {x, t}, \ {alpha}, \ Form\  \[Rule] \ sn, \ 
+      Verbose\  \[Rule] \ True, \ NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"]
+}, Open  ]]
+},
+FrontEndVersion->"4.1 for Microsoft Windows",
+ScreenRectangle->{{0, 1024}, {0, 685}},
+ScreenStyleEnvironment->"Presentation",
+WindowSize->{999, 651},
+WindowMargins->{{0, Automatic}, {Automatic, 0}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1705, 50, 70, 1, 38, "Input"],
+Cell[1778, 53, 148, 3, 38, "Input"],
+Cell[1929, 58, 57, 1, 38, "Input"],
+Cell[1989, 61, 379, 7, 84, "Input"],
+
+Cell[CellGroupData[{
+Cell[2393, 72, 34, 0, 81, "Subtitle"],
+Cell[2430, 74, 56, 1, 38, "Input"],
+Cell[2489, 77, 376, 7, 84, "Input"],
+Cell[2868, 86, 125, 2, 61, "Input"],
+Cell[2996, 90, 376, 5, 107, "Input"],
+Cell[3375, 97, 111, 2, 61, "Input"],
+Cell[3489, 101, 360, 5, 84, "Input"],
+Cell[3852, 108, 111, 2, 61, "Input"],
+Cell[3966, 112, 797, 13, 245, "Input"],
+Cell[4766, 127, 69, 1, 38, "Input"],
+Cell[4838, 130, 297, 5, 107, "Input"],
+Cell[5138, 137, 74, 1, 38, "Input"],
+Cell[5215, 140, 365, 6, 84, "Input"],
+Cell[5583, 148, 93, 1, 38, "Input"],
+Cell[5679, 151, 479, 8, 199, "Input"],
+Cell[6161, 161, 498, 8, 199, "Input"],
+Cell[6662, 171, 110, 3, 38, "Input"],
+Cell[6775, 176, 508, 9, 199, "Input"],
+Cell[7286, 187, 527, 9, 199, "Input"],
+Cell[7816, 198, 93, 1, 38, "Input"],
+Cell[7912, 201, 502, 9, 222, "Input"],
+Cell[8417, 212, 73, 1, 38, "Input"],
+Cell[8493, 215, 705, 11, 245, "Input"],
+Cell[9201, 228, 93, 1, 38, "Input"],
+Cell[9297, 231, 817, 14, 314, "Input"],
+Cell[10117, 247, 111, 2, 38, "Input"],
+Cell[10231, 251, 59, 1, 38, "Input"],
+Cell[10293, 254, 336, 6, 153, "Input"],
+Cell[10632, 262, 70, 1, 38, "Input"],
+Cell[10705, 265, 469, 8, 199, "Input"],
+Cell[11177, 275, 82, 1, 38, "Input"],
+Cell[11262, 278, 422, 7, 199, "Input"],
+Cell[11687, 287, 83, 1, 38, "Input"],
+Cell[11773, 290, 354, 6, 130, "Input"],
+Cell[12130, 298, 375, 6, 130, "Input"],
+Cell[12508, 306, 60, 1, 38, "Input"],
+Cell[12571, 309, 245, 4, 61, "Input"],
+Cell[12819, 315, 282, 4, 84, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[13138, 324, 25, 0, 81, "Subtitle"],
+Cell[13166, 326, 47, 1, 38, "Input"],
+Cell[13216, 329, 320, 6, 84, "Input"],
+Cell[13539, 337, 47, 1, 38, "Input"],
+Cell[13589, 340, 414, 7, 107, "Input"],
+Cell[14006, 349, 47, 1, 38, "Input"],
+Cell[14056, 352, 370, 6, 107, "Input"],
+Cell[14429, 360, 452, 8, 130, "Input"],
+Cell[14884, 370, 661, 10, 199, "Input"],
+Cell[15548, 382, 631, 10, 176, "Input"],
+Cell[16182, 394, 648, 11, 176, "Input"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[16867, 410, 26, 0, 81, "Subtitle"],
+Cell[16896, 412, 53, 1, 38, "Input"],
+Cell[16952, 415, 313, 6, 84, "Input"],
+Cell[17268, 423, 53, 1, 38, "Input"],
+Cell[17324, 426, 326, 6, 84, "Input"],
+Cell[17653, 434, 128, 2, 38, "Input"],
+Cell[17784, 438, 348, 6, 107, "Input"],
+Cell[18135, 446, 53, 1, 38, "Input"],
+Cell[18191, 449, 349, 6, 107, "Input"],
+Cell[18543, 457, 53, 1, 38, "Input"],
+Cell[18599, 460, 452, 8, 153, "Input"],
+Cell[19054, 470, 84, 1, 61, "Input"],
+Cell[19141, 473, 328, 6, 107, "Input"],
+Cell[19472, 481, 53, 1, 38, "Input"],
+Cell[19528, 484, 397, 7, 107, "Input"],
+Cell[19928, 493, 53, 1, 38, "Input"],
+Cell[19984, 496, 429, 9, 130, "Input"],
+Cell[20416, 507, 53, 1, 38, "Input"],
+Cell[20472, 510, 767, 14, 222, "Input"]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

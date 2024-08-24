@@ -1,0 +1,1532 @@
+(************** Content-type: application/mathematica **************
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     52045,       1342]*)
+(*NotebookOutlinePosition[     52977,       1373]*)
+(*  CellTagsIndexPosition[     52888,       1367]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["\<\
+Welcome to the PDESpecialSolutions Package for Mathematica 4.1:
+By Douglas Baldwin, Unal Goktas and Willy Hereman
+\[Copyright] 2001\
+\>", "Subtitle"],
+
+Cell[BoxData[
+    \(SetDirectory["\<c:\\myDirectory\>"]\)], "Input"],
+
+Cell[BoxData[
+    \(<< PDESpecialSolutions.m\)], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(?? \ PDESpecialSolutions\)], "Input"],
+
+Cell[BoxData[
+    \("PDESpecialSolutions[eqns, funcs, vars, params, opts] solves a system \
+of nonlinear partial differential equations (PDEs) for funcs, with \
+independent variables vars and non-zero parameters params.  \n\
+PDESpecialSolutions takes the option Form with the default  value Tanh. Other \
+options include Tanh, Sech, SechTanh, Cn, and Sn. \nPDESpecialSolutions also \
+takes the options NumericTest and  SymbolicTest with the default values \
+False. If NumericTest is set to True,  PDESpecialSolutions tests the possible \
+solutions based on 13 different sets of  random numbers ranging from zero to \
+one for all parameters and  remaining constants. Solutions are accepted if \
+they pass one or more of  these tests. \nIf SymbolicTest is set to True the \
+solutions are tested truly symbolically and the result of the test is shown \
+in factored form.  \nIn addition, PDESpecialSolutions has the option \
+InputForm with  the default value True. If InputForm is set to False, the \
+output of  PDESpecialSolutions will be in standard Mathematica output \
+form."\)], "Print",
+  CellTags->"Info3217876677-8897281"],
+
+Cell[BoxData[
+    InterpretationBox[GridBox[{
+          {\(Attributes[PDESpecialSolutions] = {Protected, ReadProtected}\)},
+          {" "},
+          {GridBox[{
+                {\(Options[PDESpecialSolutions] = {Verbose \[Rule] False, 
+                      Form \[Rule] tanh, NumericTest \[Rule] False, 
+                      SymbolicTest \[Rule] False, "InputForm" \[Rule] False, 
+                      DegreeOfThePolynomial \[Rule] {}}\)}
+                },
+              GridBaseline->{Baseline, {1, 1}},
+              ColumnWidths->0.999,
+              ColumnAlignments->{Left}]}
+          },
+        GridBaseline->{Baseline, {1, 1}},
+        ColumnAlignments->{Left}],
+      Definition[ "PDESpecialSolutions"],
+      Editable->False]], "Print",
+  CellTags->"Info3217876677-8897281"]
+}, Open  ]],
+
+Cell["\<\
+The Boussinesq system is a simple system of two equations with one parameter \
+alpha which yields a tanh solution.  The default option on form is Tanh.  \
+This system also exhibits freedom in the leading order analysis;  however, \
+the freedom doesn't lead to any additional solutions.\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x, t], t] + D[v[x, t], x]\  \[Equal] \ 0, \ 
+        D[v[x, t], \ t] + D[u[x, t], \ x] - 3*u[x, t]*D[u[x, t], x] - 
+            alpha*D[u[x, t], {x, 3}]\  \[Equal] \ 0}, \ {u[x, t], 
+        v[x, t]}, \ {x, t}, \ {alpha}, \ InputForm \[Rule] False, \ 
+      Verbose \[Rule] True, \ Form\  \[Rule] \ Tanh, \ 
+      NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \("The given system of differential equations is: "\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[GridBox[{
+          {
+            RowBox[{
+              RowBox[{
+                InterpretationBox[
+                  RowBox[{"u", "\[InvisibleSpace]", 
+                    InterpretationBox[
+                      SubscriptBox["\[Null]", 
+                        InterpretationBox["t",
+                          SequenceForm[ t],
+                          Editable->False]],
+                      Subscript[ 
+                        SequenceForm[ t]],
+                      Editable->False]}],
+                  SequenceForm[ u, 
+                    Subscript[ 
+                      SequenceForm[ t]]],
+                  Editable->False], "+", 
+                InterpretationBox[
+                  RowBox[{"v", "\[InvisibleSpace]", 
+                    InterpretationBox[
+                      SubscriptBox["\[Null]", 
+                        InterpretationBox["x",
+                          SequenceForm[ x],
+                          Editable->False]],
+                      Subscript[ 
+                        SequenceForm[ x]],
+                      Editable->False]}],
+                  SequenceForm[ v, 
+                    Subscript[ 
+                      SequenceForm[ x]]],
+                  Editable->False]}], "==", "0"}]},
+          {
+            RowBox[{
+              RowBox[{
+                InterpretationBox[
+                  RowBox[{"u", "\[InvisibleSpace]", 
+                    InterpretationBox[
+                      SubscriptBox["\[Null]", 
+                        InterpretationBox["x",
+                          SequenceForm[ x],
+                          Editable->False]],
+                      Subscript[ 
+                        SequenceForm[ x]],
+                      Editable->False]}],
+                  SequenceForm[ u, 
+                    Subscript[ 
+                      SequenceForm[ x]]],
+                  Editable->False], "-", 
+                RowBox[{"3", " ", "u", " ", 
+                  RowBox[{"(", 
+                    InterpretationBox[
+                      RowBox[{"u", "\[InvisibleSpace]", 
+                        InterpretationBox[
+                          SubscriptBox["\[Null]", 
+                            InterpretationBox["x",
+                              SequenceForm[ x],
+                              Editable->False]],
+                          Subscript[ 
+                            SequenceForm[ x]],
+                          Editable->False]}],
+                      SequenceForm[ u, 
+                        Subscript[ 
+                          SequenceForm[ x]]],
+                      Editable->False], ")"}]}], "-", 
+                RowBox[{"alpha", " ", 
+                  RowBox[{"(", 
+                    InterpretationBox[
+                      RowBox[{"u", "\[InvisibleSpace]", 
+                        InterpretationBox[
+                          SubscriptBox["\[Null]", 
+                            
+                            InterpretationBox[\(x\[InvisibleSpace]x\
+\[InvisibleSpace]x\),
+                              SequenceForm[ x, x, x],
+                              Editable->False]],
+                          Subscript[ 
+                            SequenceForm[ x, x, x]],
+                          Editable->False]}],
+                      SequenceForm[ u, 
+                        Subscript[ 
+                          SequenceForm[ x, x, x]]],
+                      Editable->False], ")"}]}], "+", 
+                InterpretationBox[
+                  RowBox[{"v", "\[InvisibleSpace]", 
+                    InterpretationBox[
+                      SubscriptBox["\[Null]", 
+                        InterpretationBox["t",
+                          SequenceForm[ t],
+                          Editable->False]],
+                      Subscript[ 
+                        SequenceForm[ t]],
+                      Editable->False]}],
+                  SequenceForm[ v, 
+                    Subscript[ 
+                      SequenceForm[ t]]],
+                  Editable->False]}], "==", "0"}]}
+          },
+        RowSpacings->1,
+        ColumnSpacings->3,
+        RowAlignments->Baseline,
+        ColumnAlignments->{Left}],
+      TableForm[ {
+        Equal[ 
+          Plus[ 
+            SequenceForm[ u, 
+              Subscript[ 
+                SequenceForm[ t]]], 
+            SequenceForm[ v, 
+              Subscript[ 
+                SequenceForm[ x]]]], 0], 
+        Equal[ 
+          Plus[ 
+            SequenceForm[ u, 
+              Subscript[ 
+                SequenceForm[ x]]], 
+            Times[ -3, u, 
+              SequenceForm[ u, 
+                Subscript[ 
+                  SequenceForm[ x]]]], 
+            Times[ -1, alpha, 
+              SequenceForm[ u, 
+                Subscript[ 
+                  SequenceForm[ x, x, x]]]], 
+            SequenceForm[ v, 
+              Subscript[ 
+                SequenceForm[ t]]]], 0]}]]], "Print"],
+
+Cell[BoxData[
+    \("Transform the differential equation(s) into a nonlinear ODE in T=Tanh"\
+\)], "Print"],
+
+Cell[BoxData[
+    RowBox[{"{", 
+      RowBox[{
+        RowBox[{
+          RowBox[{\(c[2]\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "+", 
+          RowBox[{\(c[1]\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[2]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}]}], ",", 
+        RowBox[{
+          RowBox[{\(c[1]\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "+", 
+          RowBox[{"2", " ", "alpha", " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "-", 
+          RowBox[{"6", " ", "alpha", " ", \(T\^2\), " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "-", 
+          RowBox[{"3", " ", \(c[1]\), " ", \(\(u[1]\)[T]\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "+", 
+          RowBox[{\(c[2]\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[2]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "+", 
+          RowBox[{"6", " ", "alpha", " ", "T", " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "-", 
+          RowBox[{"6", " ", "alpha", " ", \(T\^3\), " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "-", 
+          RowBox[{"alpha", " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), 
+                TagBox[\((3)\),
+                  Derivative],
+                MultilineFunction->None], "[", "T", "]"}]}], "+", 
+          RowBox[{"2", " ", "alpha", " ", \(T\^2\), " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), 
+                TagBox[\((3)\),
+                  Derivative],
+                MultilineFunction->None], "[", "T", "]"}]}], "-", 
+          RowBox[{"alpha", " ", \(T\^4\), " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), 
+                TagBox[\((3)\),
+                  Derivative],
+                MultilineFunction->None], "[", "T", "]"}]}]}]}], 
+      "}"}]], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.48999999999999844`\),
+      SequenceForm[ "Time Used:", .48999999999999844],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Determine the maximal degree of the polynomial solutions."\)], "Print"],
+
+Cell[BoxData[
+    \(PDESpecialSolutionsmSolver::"freedom" \(\(:\)\(\ \)\) 
+      "Freedom exists in this system, as \!\({\(\(1 + \(\(m[1]\)\)\)\), \
+\(\(\(\(-1\)\) + \(\(2\\ \(\(m[1]\)\)\)\)\)\)}\)  are both dominant powers in \
+expression \!\(2\)."\)], "Message"],
+
+Cell[BoxData[
+    \({{m[1] \[Rule] 2, m[2] \[Rule] 2}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.5500000000000007`\),
+      SequenceForm[ "Time Used:", .55000000000000071],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Derive the nonlinear algebraic system for the coefficients."\)], \
+"Print"],
+
+Cell[BoxData[
+    \("Seeking polynomial solutions of the form"\)], "Print"],
+
+Cell[BoxData[
+    \({{\(u[1]\)[T] \[Rule] 
+          a[1, 0] + T\ a[1, 1] + T\^2\ a[1, 2], \(u[2]\)[T] \[Rule] 
+          a[2, 0] + T\ a[2, 1] + T\^2\ a[2, 2]}}\)], "Print"],
+
+Cell[BoxData[
+    \("The nonlinear algebraic system is"\)], "Print"],
+
+Cell[BoxData[
+    \({{{a[2, 1]\ c[1] + a[1, 1]\ c[2] == 0, 
+          2\ \((a[2, 2]\ c[1] + a[1, 2]\ c[2])\) == 
+            0, \(-3\)\ a[1, 1]\ c[1]\ \((3\ a[1, 2] + 2\ alpha\ c[1]\^2)\) == 
+            0, \(-6\)\ a[1, 2]\ c[1]\ \((a[1, 2] + 4\ alpha\ c[1]\^2)\) == 0, 
+          a[1, 1]\ c[1] - 3\ a[1, 0]\ a[1, 1]\ c[1] + 
+              2\ alpha\ a[1, 1]\ c[1]\^3 + a[2, 1]\ c[2] == 
+            0, \(-3\)\ a[1, 1]\^2\ c[1] + 2\ a[1, 2]\ c[1] - 
+              6\ a[1, 0]\ a[1, 2]\ c[1] + 16\ alpha\ a[1, 2]\ c[1]\^3 + 
+              2\ a[2, 2]\ c[2] == 0}, {a[1, 0], a[1, 1], a[1, 2], a[2, 0], 
+          a[2, 1], a[2, 2]}, {c[1], c[2]}, {alpha}, {alpha, a[1, 2], a[2, 2], 
+          c[1], c[2]}}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.4900000000000002`\),
+      SequenceForm[ "Time Used:", .49000000000000021],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Solve the nonlinear algebraic system."\)], "Print"],
+
+Cell[BoxData[
+    \({{{a[1, 2] \[Rule] \(-4\)\ alpha\ c[1]\^2, a[1, 1] \[Rule] 0, 
+          a[2, 1] \[Rule] 0, 
+          a[1, 0] \[Rule] 
+            1\/12\ \((4 + 32\ alpha\ c[1]\^2 - \(4\ c[2]\^2\)\/c[1]\^2)\), 
+          a[2, 2] \[Rule] 4\ alpha\ c[1]\ c[2]}}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.5499999999999989`\),
+      SequenceForm[ "Time Used:", .54999999999999893],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Build and (numerically and/or symbolically) test the solutions."\)], \
+"Print"],
+
+Cell[BoxData[
+    \("The possible non-trivial solutions (before any testing) are: "\)], \
+"Print"],
+
+Cell[BoxData[
+    \({{{u[x, t] \[Rule] 
+            1\/3 + 8\/3\ alpha\ c[1]\^2 - c[2]\^2\/\(3\ c[1]\^2\) - 
+              4\ alpha\ c[1]\^2\ Tanh[phase + x\ c[1] + t\ c[2]]\^2, 
+          v[x, t] \[Rule] 
+            a[2, 0] + 
+              4\ alpha\ c[1]\ c[
+                  2]\ Tanh[phase + x\ c[1] + t\ c[2]]\^2}}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]1.4299999999999997`\),
+      SequenceForm[ "Time Used:", 1.4299999999999997],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \(\*"\<\"\"\>"\)], "Print"],
+
+Cell[BoxData[
+    \("The (numerically and/or symbolically) tested final solutions:"\)], \
+"Print"],
+
+Cell[BoxData[
+    \({{{u[x, 
+              t] \[Rule] \(-\(\(\(-c[1]\^2\) - 8\ alpha\ c[1]\^4 + c[2]\^2 + 
+                    12\ alpha\ c[1]\^4\ Tanh[phase + x\ c[1] + t\ \
+c[2]]\^2\)\/\(3\ c[1]\^2\)\)\), 
+          v[x, t] \[Rule] 
+            a[2, 0] + 
+              4\ alpha\ c[1]\ c[
+                  2]\ Tanh[phase + x\ c[1] + t\ c[2]]\^2}}}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    RowBox[{"PDESpecialSolutions", "[", 
+      RowBox[{
+        RowBox[{"{", 
+          RowBox[{
+            RowBox[{
+              RowBox[{
+                RowBox[{
+                  SuperscriptBox["u", 
+                    TagBox[\((0, 1)\),
+                      Derivative],
+                    MultilineFunction->None], "[", \(x, t\), "]"}], "+", 
+                RowBox[{
+                  SuperscriptBox["v", 
+                    TagBox[\((1, 0)\),
+                      Derivative],
+                    MultilineFunction->None], "[", \(x, t\), "]"}]}], "==", 
+              "0"}], ",", 
+            RowBox[{
+              RowBox[{
+                RowBox[{
+                  SuperscriptBox["v", 
+                    TagBox[\((0, 1)\),
+                      Derivative],
+                    MultilineFunction->None], "[", \(x, t\), "]"}], "+", 
+                RowBox[{
+                  SuperscriptBox["u", 
+                    TagBox[\((1, 0)\),
+                      Derivative],
+                    MultilineFunction->None], "[", \(x, t\), "]"}], "-", 
+                RowBox[{"3", " ", \(u[x, t]\), " ", 
+                  RowBox[{
+                    SuperscriptBox["u", 
+                      TagBox[\((1, 0)\),
+                        Derivative],
+                      MultilineFunction->None], "[", \(x, t\), "]"}]}], "-", 
+                RowBox[{"alpha", " ", 
+                  RowBox[{
+                    SuperscriptBox["u", 
+                      TagBox[\((3, 0)\),
+                        Derivative],
+                      MultilineFunction->None], "[", \(x, t\), "]"}]}]}], "==",
+               "0"}]}], "}"}], ",", \({u[x, t], v[x, t]}\), ",", \({x, t}\), 
+        ",", \({alpha}\), ",", \(InputForm \[Rule] False\), 
+        ",", \(Verbose \[Rule] True\)}], "]"}]], "Input"],
+
+Cell[BoxData[
+    \("The given system of differential equations is: "\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[GridBox[{
+          {
+            RowBox[{
+              RowBox[{
+                InterpretationBox[
+                  RowBox[{"u", "\[InvisibleSpace]", 
+                    InterpretationBox[
+                      SubscriptBox["\[Null]", 
+                        InterpretationBox["t",
+                          SequenceForm[ t],
+                          Editable->False]],
+                      Subscript[ 
+                        SequenceForm[ t]],
+                      Editable->False]}],
+                  SequenceForm[ u, 
+                    Subscript[ 
+                      SequenceForm[ t]]],
+                  Editable->False], "+", 
+                InterpretationBox[
+                  RowBox[{"v", "\[InvisibleSpace]", 
+                    InterpretationBox[
+                      SubscriptBox["\[Null]", 
+                        InterpretationBox["x",
+                          SequenceForm[ x],
+                          Editable->False]],
+                      Subscript[ 
+                        SequenceForm[ x]],
+                      Editable->False]}],
+                  SequenceForm[ v, 
+                    Subscript[ 
+                      SequenceForm[ x]]],
+                  Editable->False]}], "==", "0"}]},
+          {
+            RowBox[{
+              RowBox[{
+                InterpretationBox[
+                  RowBox[{"u", "\[InvisibleSpace]", 
+                    InterpretationBox[
+                      SubscriptBox["\[Null]", 
+                        InterpretationBox["x",
+                          SequenceForm[ x],
+                          Editable->False]],
+                      Subscript[ 
+                        SequenceForm[ x]],
+                      Editable->False]}],
+                  SequenceForm[ u, 
+                    Subscript[ 
+                      SequenceForm[ x]]],
+                  Editable->False], "-", 
+                RowBox[{"3", " ", "u", " ", 
+                  RowBox[{"(", 
+                    InterpretationBox[
+                      RowBox[{"u", "\[InvisibleSpace]", 
+                        InterpretationBox[
+                          SubscriptBox["\[Null]", 
+                            InterpretationBox["x",
+                              SequenceForm[ x],
+                              Editable->False]],
+                          Subscript[ 
+                            SequenceForm[ x]],
+                          Editable->False]}],
+                      SequenceForm[ u, 
+                        Subscript[ 
+                          SequenceForm[ x]]],
+                      Editable->False], ")"}]}], "-", 
+                RowBox[{"alpha", " ", 
+                  RowBox[{"(", 
+                    InterpretationBox[
+                      RowBox[{"u", "\[InvisibleSpace]", 
+                        InterpretationBox[
+                          SubscriptBox["\[Null]", 
+                            
+                            InterpretationBox[\(x\[InvisibleSpace]x\
+\[InvisibleSpace]x\),
+                              SequenceForm[ x, x, x],
+                              Editable->False]],
+                          Subscript[ 
+                            SequenceForm[ x, x, x]],
+                          Editable->False]}],
+                      SequenceForm[ u, 
+                        Subscript[ 
+                          SequenceForm[ x, x, x]]],
+                      Editable->False], ")"}]}], "+", 
+                InterpretationBox[
+                  RowBox[{"v", "\[InvisibleSpace]", 
+                    InterpretationBox[
+                      SubscriptBox["\[Null]", 
+                        InterpretationBox["t",
+                          SequenceForm[ t],
+                          Editable->False]],
+                      Subscript[ 
+                        SequenceForm[ t]],
+                      Editable->False]}],
+                  SequenceForm[ v, 
+                    Subscript[ 
+                      SequenceForm[ t]]],
+                  Editable->False]}], "==", "0"}]}
+          },
+        RowSpacings->1,
+        ColumnSpacings->3,
+        RowAlignments->Baseline,
+        ColumnAlignments->{Left}],
+      TableForm[ {
+        Equal[ 
+          Plus[ 
+            SequenceForm[ u, 
+              Subscript[ 
+                SequenceForm[ t]]], 
+            SequenceForm[ v, 
+              Subscript[ 
+                SequenceForm[ x]]]], 0], 
+        Equal[ 
+          Plus[ 
+            SequenceForm[ u, 
+              Subscript[ 
+                SequenceForm[ x]]], 
+            Times[ -3, u, 
+              SequenceForm[ u, 
+                Subscript[ 
+                  SequenceForm[ x]]]], 
+            Times[ -1, alpha, 
+              SequenceForm[ u, 
+                Subscript[ 
+                  SequenceForm[ x, x, x]]]], 
+            SequenceForm[ v, 
+              Subscript[ 
+                SequenceForm[ t]]]], 0]}]]], "Print"],
+
+Cell[BoxData[
+    \("Transform the differential equation(s) into a nonlinear ODE in T=Tanh"\
+\)], "Print"],
+
+Cell[BoxData[
+    RowBox[{"{", 
+      RowBox[{
+        RowBox[{
+          RowBox[{\(c[2]\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "+", 
+          RowBox[{\(c[1]\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[2]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}]}], ",", 
+        RowBox[{
+          RowBox[{\(c[1]\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "+", 
+          RowBox[{"2", " ", "alpha", " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "-", 
+          RowBox[{"6", " ", "alpha", " ", \(T\^2\), " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "-", 
+          RowBox[{"3", " ", \(c[1]\), " ", \(\(u[1]\)[T]\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "+", 
+          RowBox[{\(c[2]\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[2]\), "\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "+", 
+          RowBox[{"6", " ", "alpha", " ", "T", " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "-", 
+          RowBox[{"6", " ", "alpha", " ", \(T\^3\), " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), "\[Prime]\[Prime]",
+                MultilineFunction->None], "[", "T", "]"}]}], "-", 
+          RowBox[{"alpha", " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), 
+                TagBox[\((3)\),
+                  Derivative],
+                MultilineFunction->None], "[", "T", "]"}]}], "+", 
+          RowBox[{"2", " ", "alpha", " ", \(T\^2\), " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), 
+                TagBox[\((3)\),
+                  Derivative],
+                MultilineFunction->None], "[", "T", "]"}]}], "-", 
+          RowBox[{"alpha", " ", \(T\^4\), " ", \(c[1]\^3\), " ", 
+            RowBox[{
+              SuperscriptBox[\(u[1]\), 
+                TagBox[\((3)\),
+                  Derivative],
+                MultilineFunction->None], "[", "T", "]"}]}]}]}], 
+      "}"}]], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.5`\),
+      SequenceForm[ "Time Used:", .5],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Determine the maximal degree of the polynomial solutions."\)], "Print"],
+
+Cell[BoxData[
+    \(PDESpecialSolutionsmSolver::"freedom" \(\(:\)\(\ \)\) 
+      "Freedom exists in this system, as \!\({\(\(1 + \(\(m[1]\)\)\)\), \
+\(\(\(\(-1\)\) + \(\(2\\ \(\(m[1]\)\)\)\)\)\)}\)  are both dominant powers in \
+expression \!\(2\)."\)], "Message"],
+
+Cell[BoxData[
+    \({{m[1] \[Rule] 2, m[2] \[Rule] 2}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.5`\),
+      SequenceForm[ "Time Used:", .5],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Derive the nonlinear algebraic system for the coefficients."\)], \
+"Print"],
+
+Cell[BoxData[
+    \("Seeking polynomial solutions of the form"\)], "Print"],
+
+Cell[BoxData[
+    \({{\(u[1]\)[T] \[Rule] 
+          a[1, 0] + T\ a[1, 1] + T\^2\ a[1, 2], \(u[2]\)[T] \[Rule] 
+          a[2, 0] + T\ a[2, 1] + T\^2\ a[2, 2]}}\)], "Print"],
+
+Cell[BoxData[
+    \("The nonlinear algebraic system is"\)], "Print"],
+
+Cell[BoxData[
+    \({{{a[2, 1]\ c[1] + a[1, 1]\ c[2] == 0, 
+          2\ \((a[2, 2]\ c[1] + a[1, 2]\ c[2])\) == 
+            0, \(-3\)\ a[1, 1]\ c[1]\ \((3\ a[1, 2] + 2\ alpha\ c[1]\^2)\) == 
+            0, \(-6\)\ a[1, 2]\ c[1]\ \((a[1, 2] + 4\ alpha\ c[1]\^2)\) == 0, 
+          a[1, 1]\ c[1] - 3\ a[1, 0]\ a[1, 1]\ c[1] + 
+              2\ alpha\ a[1, 1]\ c[1]\^3 + a[2, 1]\ c[2] == 
+            0, \(-3\)\ a[1, 1]\^2\ c[1] + 2\ a[1, 2]\ c[1] - 
+              6\ a[1, 0]\ a[1, 2]\ c[1] + 16\ alpha\ a[1, 2]\ c[1]\^3 + 
+              2\ a[2, 2]\ c[2] == 0}, {a[1, 0], a[1, 1], a[1, 2], a[2, 0], 
+          a[2, 1], a[2, 2]}, {c[1], c[2]}, {alpha}, {alpha, a[1, 2], a[2, 2], 
+          c[1], c[2]}}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.48999999999999844`\),
+      SequenceForm[ "Time Used:", .48999999999999844],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Solve the nonlinear algebraic system."\)], "Print"],
+
+Cell[BoxData[
+    \({{{a[1, 2] \[Rule] \(-4\)\ alpha\ c[1]\^2, a[1, 1] \[Rule] 0, 
+          a[2, 1] \[Rule] 0, 
+          a[1, 0] \[Rule] 
+            1\/12\ \((4 + 32\ alpha\ c[1]\^2 - \(4\ c[2]\^2\)\/c[1]\^2)\), 
+          a[2, 2] \[Rule] 4\ alpha\ c[1]\ c[2]}}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.5500000000000007`\),
+      SequenceForm[ "Time Used:", .55000000000000071],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Build the travelling wave solutions."\)], "Print"],
+
+Cell[BoxData[
+    \("The possible non-trivial solutions (before any testing) are: "\)], \
+"Print"],
+
+Cell[BoxData[
+    \({{{u[x, t] \[Rule] 
+            1\/3 + 8\/3\ alpha\ c[1]\^2 - c[2]\^2\/\(3\ c[1]\^2\) - 
+              4\ alpha\ c[1]\^2\ Tanh[phase + x\ c[1] + t\ c[2]]\^2, 
+          v[x, t] \[Rule] 
+            a[2, 0] + 
+              4\ alpha\ c[1]\ c[
+                  2]\ Tanh[phase + x\ c[1] + t\ c[2]]\^2}}}\)], "Print"],
+
+Cell["\<\
+These solutions are not being tested numerically or symbolically. To test the \
+solutions set either the NumericTest option to True, or set the SymbolicTest \
+option to True, or both. \
+\>", "Message"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.4400000000000013`\),
+      SequenceForm[ "Time Used:", .44000000000000128],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \(\*"\<\"\"\>"\)], "Print"],
+
+Cell[BoxData[
+    \("The list of possible solutions is:"\)], "Print"],
+
+Cell[BoxData[
+    \({{{u[x, 
+              t] \[Rule] \(-\(\(\(-c[1]\^2\) - 8\ alpha\ c[1]\^4 + c[2]\^2 + 
+                    12\ alpha\ c[1]\^4\ Tanh[phase + x\ c[1] + t\ \
+c[2]]\^2\)\/\(3\ c[1]\^2\)\)\), 
+          v[x, t] \[Rule] 
+            a[2, 0] + 
+              4\ alpha\ c[1]\ c[
+                  2]\ Tanh[phase + x\ c[1] + t\ c[2]]\^2}}}\)], "Output"]
+}, Open  ]],
+
+Cell["\<\
+ Modified 3D KdV is an example of a single nonlinear PDE which yields two \
+Sech solution.\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, y, z, t], \ t]\  + \ 6*u[x, y, z, t]^2*D[u[x, y, z, t], x]\  + \ 
+          D[u[x, y, z, t], {x, 1}, {y, 1}, {z, 1}]\  \[Equal] \ 0, \ 
+      u[x, y, z, t], \ {x, y, z, t}, \ {}, \ Form \[Rule] Sech, \ 
+      Test \[Rule] True]\)], "Input"],
+
+Cell[BoxData[
+    \(General::"spell" \(\(:\)\(\ \)\) 
+      "Possible spelling error: new symbol name \"\!\(Test\)\" is similar to \
+existing symbols \!\({Nest, Rest, Text}\)."\)], "Message"],
+
+Cell["\<\
+These solutions are not being tested numerically or symbolically. To test the \
+solutions set either the NumericTest option to True, or set the SymbolicTest \
+option to True, or both. \
+\>", "Message"],
+
+Cell[BoxData[
+    \({{{u[x, y, z, 
+              t] \[Rule] \(-\@c[2]\)\ \@c[3]\ Sech[\(phase\ c[2]\ c[3] + y\ \
+c[2]\^2\ c[3] + z\ c[2]\ c[3]\^2 - x\ c[4] + t\ c[2]\ c[3]\ c[4]\)\/\(c[2]\ \
+c[3]\)]}, {u[x, y, z, 
+              t] \[Rule] \@c[2]\ \@c[3]\ Sech[\(phase\ c[2]\ c[3] + y\ \
+c[2]\^2\ c[3] + z\ c[2]\ c[3]\^2 - x\ c[4] + t\ c[2]\ c[3]\ c[4]\)\/\(c[2]\ \
+c[3]\)]}}}\)], "Output"]
+}, Open  ]],
+
+Cell["\<\
+Gao and Tian is a system of three equations which admit numerous mixed \
+solutions of the mixed Sech-Tanh case.  This one takes a while.  In the mixed \
+case, constant solutions are not removed.\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x, t], \ t]\  - \ D[u[x, t], \ x]\  - \ 
+            2*v[x, t]\  \[Equal] \ 0, \ 
+        D[v[x, t], \ t]\  + \ 2*u[x, t]*w[x, t]\  \[Equal] \ 0, \ 
+        D[w[x, t], \ t]\  + \ 2*u[x, t]*v[x, t]\  \[Equal] \ 0}, \ {u[x, 
+          t], \ v[x, t], \ w[x, t]}, \ {x, t}, \ {}, \ 
+      Form \[Rule] SechTanh]\)], "Input"],
+
+Cell[BoxData[
+    \("Still building the algebraic system, please wait."\)], "Print"],
+
+Cell["\<\
+These solutions are not being tested numerically or symbolically. To test the \
+solutions set either the NumericTest option to True, or set the SymbolicTest \
+option to True, or both. \
+\>", "Message"],
+
+Cell["\<\
+The following simplification rules are being used: {Sqrt[a^2]->a, \
+Sqrt[-a^2]->I*a}\
+\>", "Message"],
+
+Cell[BoxData[
+    \({{{u[x, 
+              t] \[Rule] \(-\(\(\@c[2]\ \@\(\((c[1] - c[2])\)\ c[2]\)\ Sech[
+                      phase + x\ c[1] + 
+                        t\ c[2]]\)\/\@\(\(-c[1]\) + c[2]\)\)\), 
+          v[x, t] \[Rule] 
+            1\/2\ \@c[2]\ \@\(\((c[1] - c[2])\)\ c[2]\)\ \@\(\(-c[1]\) + c[2]\
+\)\ Sech[phase + x\ c[1] + t\ c[2]]\ Tanh[phase + x\ c[1] + t\ c[2]], 
+          w[x, t] \[Rule] \(-\(1\/4\)\)\ \((c[1] - c[2])\)\ c[
+                2]\ \((\(-1\) + 2\ Sech[phase + x\ c[1] + t\ c[2]]\^2)\)}, {u[
+              x, t] \[Rule] \(\@c[2]\ \@\(\((c[1] - c[2])\)\ c[2]\)\ \
+Sech[phase + x\ c[1] + t\ c[2]]\)\/\@\(\(-c[1]\) + c[2]\), 
+          v[x, t] \[Rule] \(-\(1\/2\)\)\ \@c[2]\ \@\(\((c[1] - c[2])\)\ \
+c[2]\)\ \@\(\(-c[1]\) + c[2]\)\ Sech[phase + x\ c[1] + t\ c[2]]\ Tanh[
+                phase + x\ c[1] + t\ c[2]], 
+          w[x, t] \[Rule] \(-\(1\/4\)\)\ \((c[1] - c[2])\)\ c[
+                2]\ \((\(-1\) + 2\ Sech[phase + x\ c[1] + t\ c[2]]\^2)\)}, {u[
+              x, t] \[Rule] \(-\(\(\((c[1] - c[2])\)\ c[
+                      2]\ \((Sech[
+                          phase + x\ c[1] + t\ c[2]] - \[ImaginaryI]\ Tanh[
+                            phase + x\ c[1] + 
+                              t\ c[2]])\)\)\/\(2\ \@\(-\((c[1] - c[2])\)\^2\)\
+\)\)\), v[x, 
+              t] \[Rule] \(-\(1\/4\)\)\ \((c[1] - c[2])\)\ c[2]\ Sech[
+                phase + x\ c[1] + 
+                  t\ c[2]]\ \((Sech[
+                    phase + x\ c[1] + t\ c[2]] - \[ImaginaryI]\ Tanh[
+                      phase + x\ c[1] + t\ c[2]])\), 
+          w[x, t] \[Rule] \(-\(1\/4\)\)\ \((c[1] - c[2])\)\ c[2]\ Sech[
+                phase + x\ c[1] + 
+                  t\ c[2]]\ \((Sech[
+                    phase + x\ c[1] + t\ c[2]] - \[ImaginaryI]\ Tanh[
+                      phase + x\ c[1] + t\ c[2]])\)}, {u[x, 
+              t] \[Rule] \(\((c[1] - c[2])\)\ c[2]\ \((Sech[phase + x\ c[1] + \
+t\ c[2]] - \[ImaginaryI]\ Tanh[phase + x\ c[1] + t\ c[2]])\)\)\/\(2\ \
+\@\(-\((c[1] - c[2])\)\^2\)\), 
+          v[x, t] \[Rule] 
+            1\/4\ \((c[1] - c[2])\)\ c[2]\ Sech[
+                phase + x\ c[1] + 
+                  t\ c[2]]\ \((Sech[
+                    phase + x\ c[1] + t\ c[2]] - \[ImaginaryI]\ Tanh[
+                      phase + x\ c[1] + t\ c[2]])\), 
+          w[x, t] \[Rule] \(-\(1\/4\)\)\ \((c[1] - c[2])\)\ c[2]\ Sech[
+                phase + x\ c[1] + 
+                  t\ c[2]]\ \((Sech[
+                    phase + x\ c[1] + t\ c[2]] - \[ImaginaryI]\ Tanh[
+                      phase + x\ c[1] + t\ c[2]])\)}, {u[x, 
+              t] \[Rule] \(-\(\(\((c[1] - c[2])\)\ c[
+                      2]\ \((Sech[
+                          phase + x\ c[1] + t\ c[2]] + \[ImaginaryI]\ Tanh[
+                            phase + x\ c[1] + 
+                              t\ c[2]])\)\)\/\(2\ \@\(-\((c[1] - c[2])\)\^2\)\
+\)\)\), v[x, t] \[Rule] 
+            1\/4\ \((c[1] - c[2])\)\ c[2]\ Sech[
+                phase + x\ c[1] + 
+                  t\ c[2]]\ \((Sech[
+                    phase + x\ c[1] + t\ c[2]] + \[ImaginaryI]\ Tanh[
+                      phase + x\ c[1] + t\ c[2]])\), 
+          w[x, t] \[Rule] \(-\(1\/4\)\)\ \((c[1] - c[2])\)\ c[2]\ Sech[
+                phase + x\ c[1] + 
+                  t\ c[2]]\ \((Sech[
+                    phase + x\ c[1] + t\ c[2]] + \[ImaginaryI]\ Tanh[
+                      phase + x\ c[1] + t\ c[2]])\)}, {u[x, 
+              t] \[Rule] \(\((c[1] - c[2])\)\ c[2]\ \((Sech[phase + x\ c[1] + \
+t\ c[2]] + \[ImaginaryI]\ Tanh[phase + x\ c[1] + t\ c[2]])\)\)\/\(2\ \
+\@\(-\((c[1] - c[2])\)\^2\)\), 
+          v[x, t] \[Rule] \(-\(1\/4\)\)\ \((c[1] - c[2])\)\ c[2]\ Sech[
+                phase + x\ c[1] + 
+                  t\ c[2]]\ \((Sech[
+                    phase + x\ c[1] + t\ c[2]] + \[ImaginaryI]\ Tanh[
+                      phase + x\ c[1] + t\ c[2]])\), 
+          w[x, t] \[Rule] \(-\(1\/4\)\)\ \((c[1] - c[2])\)\ c[2]\ Sech[
+                phase + x\ c[1] + 
+                  t\ c[2]]\ \((Sech[
+                    phase + x\ c[1] + t\ c[2]] + \[ImaginaryI]\ Tanh[
+                      phase + x\ c[1] + t\ c[2]])\)}, {u[x, 
+              t] \[Rule] \(-\(\(\@c[2]\ \@\(\((c[1] - c[2])\)\^2\ c[2]\)\ \
+Tanh[phase + x\ c[1] + t\ c[2]]\)\/\(c[1] - c[2]\)\)\), 
+          v[x, t] \[Rule] 
+            1\/2\ \@c[2]\ \@\(\((c[1] - c[2])\)\^2\ c[2]\)\ Sech[phase + x\ \
+c[1] + t\ c[2]]\^2, 
+          w[x, t] \[Rule] \(-\(1\/2\)\)\ \((c[1] - c[2])\)\ c[
+                2]\ Sech[phase + x\ c[1] + t\ c[2]]\^2}, {u[x, 
+              t] \[Rule] \(\@c[2]\ \@\(\((c[1] - c[2])\)\^2\ c[2]\)\ \
+Tanh[phase + x\ c[1] + t\ c[2]]\)\/\(c[1] - c[2]\), 
+          v[x, t] \[Rule] \(-\(1\/2\)\)\ \@c[2]\ \@\(\((c[1] - c[2])\)\^2\ \
+c[2]\)\ Sech[phase + x\ c[1] + t\ c[2]]\^2, 
+          w[x, t] \[Rule] \(-\(1\/2\)\)\ \((c[1] - c[2])\)\ c[
+                2]\ Sech[phase + x\ c[1] + t\ c[2]]\^2}, {u[x, t] \[Rule] 
+            a[1, 0] + a[1, 1]\ Sech[phase + t\ c[2] + x\ c[2]] + 
+              a[1, 2]\ Sech[phase + t\ c[2] + x\ c[2]]\^2 + 
+              b[1, 0]\ Tanh[phase + t\ c[2] + x\ c[2]] + 
+              b[1, 1]\ Sech[phase + t\ c[2] + x\ c[2]]\ Tanh[
+                  phase + t\ c[2] + x\ c[2]], v[x, t] \[Rule] 0, 
+          w[x, t] \[Rule] 0}}}\)], "Output"]
+}, Open  ]],
+
+Cell["\<\
+Duffing Equation (ODE) yields solutions of the Jacobi elliptic CN and SN.  \
+Both are shown.  In the Jacobi elliptic function options, constant solutions \
+are not removed.\
+\>", "Text"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x], {x, 2}] + u[x] + alpha*u[x]^3 \[Equal] 
+          0}, \ u[x], {x}, {alpha}, \ Form \[Rule] Cn, 
+      Verbose\  \[Rule] \ True, \ InputForm \[Rule] False, \ 
+      NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \("The given system of differential equations is: "\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[GridBox[{
+          {
+            RowBox[{
+              RowBox[{"u", "+", \(alpha\ u\^3\), "+", 
+                InterpretationBox[
+                  RowBox[{"u", "\[InvisibleSpace]", 
+                    InterpretationBox[
+                      SubscriptBox["\[Null]", 
+                        InterpretationBox[\(x\[InvisibleSpace]x\),
+                          SequenceForm[ x, x],
+                          Editable->False]],
+                      Subscript[ 
+                        SequenceForm[ x, x]],
+                      Editable->False]}],
+                  SequenceForm[ u, 
+                    Subscript[ 
+                      SequenceForm[ x, x]]],
+                  Editable->False]}], "==", "0"}]}
+          },
+        RowSpacings->1,
+        ColumnSpacings->3,
+        RowAlignments->Baseline,
+        ColumnAlignments->{Left}],
+      TableForm[ {
+        Equal[ 
+          Plus[ u, 
+            Times[ alpha, 
+              Power[ u, 3]], 
+            SequenceForm[ u, 
+              Subscript[ 
+                SequenceForm[ x, x]]]], 0]}]]], "Print"],
+
+Cell[BoxData[
+    \("Transform the differential equation(s) into a nonlinear ODE in \
+CN=JacobiCN"\)], "Print"],
+
+Cell[BoxData[
+    RowBox[{"{", 
+      RowBox[{\(\(u[1]\)[CN]\), "+", \(alpha\ \(u[1]\)[CN]\^3\), "-", 
+        RowBox[{"CN", " ", \(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]",
+              MultilineFunction->None], "[", "CN", "]"}]}], "+", 
+        RowBox[{"2", " ", "CN", " ", "mod", " ", \(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]",
+              MultilineFunction->None], "[", "CN", "]"}]}], "-", 
+        RowBox[{"2", " ", \(CN\^3\), " ", "mod", " ", \(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]",
+              MultilineFunction->None], "[", "CN", "]"}]}], "+", 
+        RowBox[{\(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]\[Prime]",
+              MultilineFunction->None], "[", "CN", "]"}]}], "-", 
+        RowBox[{\(CN\^2\), " ", \(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]\[Prime]",
+              MultilineFunction->None], "[", "CN", "]"}]}], "-", 
+        RowBox[{"mod", " ", \(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]\[Prime]",
+              MultilineFunction->None], "[", "CN", "]"}]}], "+", 
+        RowBox[{"2", " ", \(CN\^2\), " ", "mod", " ", \(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]\[Prime]",
+              MultilineFunction->None], "[", "CN", "]"}]}], "-", 
+        RowBox[{\(CN\^4\), " ", "mod", " ", \(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]\[Prime]",
+              MultilineFunction->None], "[", "CN", "]"}]}]}], "}"}]], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.37999999999999545`\),
+      SequenceForm[ "Time Used:", .37999999999999545],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Determine the maximal degree of the polynomial solutions."\)], "Print"],
+
+Cell[BoxData[
+    \({{m[1] \[Rule] 1}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.21999999999999886`\),
+      SequenceForm[ "Time Used:", .21999999999999886],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Derive the nonlinear algebraic system for the coefficients."\)], \
+"Print"],
+
+Cell[BoxData[
+    \("Seeking polynomial solutions of the form"\)], "Print"],
+
+Cell[BoxData[
+    \({{\(u[1]\)[CN] \[Rule] a[1, 0] + CN\ a[1, 1]}}\)], "Print"],
+
+Cell[BoxData[
+    \("The nonlinear algebraic system is"\)], "Print"],
+
+Cell[BoxData[
+    \({{{a[1, 0]\ \((1 + alpha\ a[1, 0]\^2)\) == 0, 
+          a[1, 1]\ \((alpha\ a[1, 1]\^2 - 2\ mod\ c[1]\^2)\) == 0, 
+          3\ alpha\ a[1, 0]\ a[1, 1]\^2 == 0, 
+          a[1, 1]\ \((1 + 3\ alpha\ a[1, 0]\^2 - c[1]\^2 + 
+                  2\ mod\ c[1]\^2)\) == 0}, {a[1, 0], a[1, 1]}, {c[1], 
+          mod}, {alpha}, {alpha, c[1], mod}}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.21999999999999886`\),
+      SequenceForm[ "Time Used:", .21999999999999886],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Solve the nonlinear algebraic system."\)], "Print"],
+
+Cell[BoxData[
+    \({{{a[1, 0] \[Rule] 0, a[1, 1] \[Rule] 0}, {a[1, 1] \[Rule] 0, 
+          a[1, 0] \[Rule] 0}, {a[1, 1] \[Rule] 0, 
+          a[1, 0] \[Rule] \(-\(\[ImaginaryI]\/\@alpha\)\)}, {a[1, 1] \[Rule] 
+            0, a[1, 0] \[Rule] \[ImaginaryI]\/\@alpha}, {a[1, 0] \[Rule] 0, 
+          mod \[Rule] \(\(-1\) + c[1]\^2\)\/\(2\ c[1]\^2\), 
+          a[1, 1] \[Rule] 0}, {a[1, 0] \[Rule] 0, 
+          mod \[Rule] \(\(-1\) + c[1]\^2\)\/\(2\ c[1]\^2\), 
+          a[1, 1] \[Rule] \(-\(\@\(\(-1\) + c[1]\^2\)\/\@alpha\)\)}, {a[1, 
+              0] \[Rule] 0, mod \[Rule] \(\(-1\) + c[1]\^2\)\/\(2\ c[1]\^2\), 
+          a[1, 1] \[Rule] \@\(\(-1\) + c[1]\^2\)\/\@alpha}}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.4399999999999977`\),
+      SequenceForm[ "Time Used:", .43999999999999773],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Build and (numerically and/or symbolically) test the solutions."\)], \
+"Print"],
+
+Cell[BoxData[
+    \("The possible non-trivial solutions (before any testing) are: "\)], \
+"Print"],
+
+Cell[BoxData[
+    \({{{u[
+              x] \[Rule] \(-\(\(\@\(\(-1\) + c[1]\^2\)\ JacobiCN[
+                      phase + x\ c[1], 
+                      1\/2 - 1\/\(2\ c[1]\^2\)]\)\/\@alpha\)\), 
+          mod \[Rule] 
+            1\/2 - 1\/\(2\ c[1]\^2\)}, {u[
+              x] \[Rule] \(\@\(\(-1\) + c[1]\^2\)\ JacobiCN[phase + x\ c[1], \
+1\/2 - 1\/\(2\ c[1]\^2\)]\)\/\@alpha, 
+          mod \[Rule] 1\/2 - 1\/\(2\ c[1]\^2\)}}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]1.920000000000016`\),
+      SequenceForm[ "Time Used:", 1.9200000000000159],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \(\*"\<\"\"\>"\)], "Print"],
+
+Cell[BoxData[
+    \("The (numerically and/or symbolically) tested final solutions:"\)], \
+"Print"],
+
+Cell[BoxData[
+    \({{{u[
+              x] \[Rule] \(-\(\(\@\(\((\(-1\) + c[1])\)\ \((1 + c[1])\)\)\ \
+JacobiCN[phase + 
+                        x\ c[1], \(\((\(-1\) + c[1])\)\ \((1 + c[1])\)\)\/\(2\
+\ c[1]\^2\)]\)\/\@alpha\)\), 
+          mod \[Rule] \(\((\(-1\) + c[1])\)\ \((1 + c[1])\)\)\/\(2\ \
+c[1]\^2\)}}, {{u[
+              x] \[Rule] \(\@\(\((\(-1\) + c[1])\)\ \((1 + c[1])\)\)\ \
+JacobiCN[phase + x\ c[1], \(\((\(-1\) + c[1])\)\ \((1 + c[1])\)\)\/\(2\ \
+c[1]\^2\)]\)\/\@alpha, 
+          mod \[Rule] \(\((\(-1\) + c[1])\)\ \((1 + c[1])\)\)\/\(2\ \
+c[1]\^2\)}}}\)], "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x], {x, 2}] + u[x] + alpha*u[x]^3 \[Equal] 
+          0}, \ u[x], {x}, {alpha}, \ Form \[Rule] Sn, \ 
+      InputForm \[Rule] False, \ Verbose\  \[Rule] \ True, \ 
+      NumericTest\  \[Rule] \ True, \ 
+      SymbolicTest\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \("The given system of differential equations is: "\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[GridBox[{
+          {
+            RowBox[{
+              RowBox[{"u", "+", \(alpha\ u\^3\), "+", 
+                InterpretationBox[
+                  RowBox[{"u", "\[InvisibleSpace]", 
+                    InterpretationBox[
+                      SubscriptBox["\[Null]", 
+                        InterpretationBox[\(x\[InvisibleSpace]x\),
+                          SequenceForm[ x, x],
+                          Editable->False]],
+                      Subscript[ 
+                        SequenceForm[ x, x]],
+                      Editable->False]}],
+                  SequenceForm[ u, 
+                    Subscript[ 
+                      SequenceForm[ x, x]]],
+                  Editable->False]}], "==", "0"}]}
+          },
+        RowSpacings->1,
+        ColumnSpacings->3,
+        RowAlignments->Baseline,
+        ColumnAlignments->{Left}],
+      TableForm[ {
+        Equal[ 
+          Plus[ u, 
+            Times[ alpha, 
+              Power[ u, 3]], 
+            SequenceForm[ u, 
+              Subscript[ 
+                SequenceForm[ x, x]]]], 0]}]]], "Print"],
+
+Cell[BoxData[
+    \("Transform the differential equation(s) into a nonlinear ODE in \
+SN=JacobiSN"\)], "Print"],
+
+Cell[BoxData[
+    RowBox[{"{", 
+      RowBox[{\(\(u[1]\)[SN]\), "+", \(alpha\ \(u[1]\)[SN]\^3\), "-", 
+        RowBox[{"SN", " ", \(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]",
+              MultilineFunction->None], "[", "SN", "]"}]}], "-", 
+        RowBox[{"mod", " ", "SN", " ", \(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]",
+              MultilineFunction->None], "[", "SN", "]"}]}], "+", 
+        RowBox[{"2", " ", "mod", " ", \(SN\^3\), " ", \(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]",
+              MultilineFunction->None], "[", "SN", "]"}]}], "+", 
+        RowBox[{\(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]\[Prime]",
+              MultilineFunction->None], "[", "SN", "]"}]}], "-", 
+        RowBox[{\(SN\^2\), " ", \(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]\[Prime]",
+              MultilineFunction->None], "[", "SN", "]"}]}], "-", 
+        RowBox[{"mod", " ", \(SN\^2\), " ", \(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]\[Prime]",
+              MultilineFunction->None], "[", "SN", "]"}]}], "+", 
+        RowBox[{"mod", " ", \(SN\^4\), " ", \(c[1]\^2\), " ", 
+          RowBox[{
+            SuperscriptBox[\(u[1]\), "\[Prime]\[Prime]",
+              MultilineFunction->None], "[", "SN", "]"}]}]}], "}"}]], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.3900000000000148`\),
+      SequenceForm[ "Time Used:", .39000000000001478],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Determine the maximal degree of the polynomial solutions."\)], "Print"],
+
+Cell[BoxData[
+    \({{m[1] \[Rule] 1}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.28000000000000114`\),
+      SequenceForm[ "Time Used:", .28000000000000114],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Derive the nonlinear algebraic system for the coefficients."\)], \
+"Print"],
+
+Cell[BoxData[
+    \("Seeking polynomial solutions of the form"\)], "Print"],
+
+Cell[BoxData[
+    \({{\(u[1]\)[SN] \[Rule] a[1, 0] + SN\ a[1, 1]}}\)], "Print"],
+
+Cell[BoxData[
+    \("The nonlinear algebraic system is"\)], "Print"],
+
+Cell[BoxData[
+    \({{{a[1, 0]\ \((1 + alpha\ a[1, 0]\^2)\) == 0, 
+          a[1, 1]\ \((alpha\ a[1, 1]\^2 + 2\ mod\ c[1]\^2)\) == 0, 
+          3\ alpha\ a[1, 0]\ a[1, 1]\^2 == 0, 
+          a[1, 1]\ \((1 + 3\ alpha\ a[1, 0]\^2 - c[1]\^2 - mod\ c[1]\^2)\) == 
+            0}, {a[1, 0], a[1, 1]}, {c[1], mod}, {alpha}, {alpha, c[1], 
+          mod}}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.3299999999999841`\),
+      SequenceForm[ "Time Used:", .32999999999998408],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Solve the nonlinear algebraic system."\)], "Print"],
+
+Cell[BoxData[
+    \({{{a[1, 0] \[Rule] 0, a[1, 1] \[Rule] 0}, {a[1, 1] \[Rule] 0, 
+          a[1, 0] \[Rule] 0}, {a[1, 1] \[Rule] 0, 
+          a[1, 0] \[Rule] \(-\(\[ImaginaryI]\/\@alpha\)\)}, {a[1, 1] \[Rule] 
+            0, a[1, 0] \[Rule] \[ImaginaryI]\/\@alpha}, {a[1, 0] \[Rule] 0, 
+          mod \[Rule] \(-1\) + 1\/c[1]\^2, 
+          a[1, 1] \[Rule] 0}, {a[1, 0] \[Rule] 0, 
+          mod \[Rule] \(-1\) + 1\/c[1]\^2, 
+          a[1, 1] \[Rule] \(-\(\(\@2\ \@\(\(-1\) + c[1]\^2\)\)\/\@alpha\)\)}, \
+{a[1, 0] \[Rule] 0, mod \[Rule] \(-1\) + 1\/c[1]\^2, 
+          a[1, 1] \[Rule] \(\@2\ \@\(\(-1\) + c[1]\^2\)\)\/\@alpha}}}\)], \
+"Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]0.3300000000000125`\),
+      SequenceForm[ "Time Used:", .33000000000001251],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \("Build and (numerically and/or symbolically) test the solutions."\)], \
+"Print"],
+
+Cell[BoxData[
+    \("The possible non-trivial solutions (before any testing) are: "\)], \
+"Print"],
+
+Cell[BoxData[
+    \({{{u[
+              x] \[Rule] \(-\(\(\@2\ \@\(\(-1\) + c[1]\^2\)\ JacobiSN[
+                      phase + x\ c[1], \(-1\) + 1\/c[1]\^2]\)\/\@alpha\)\), 
+          mod \[Rule] \(-1\) + 1\/c[1]\^2}, {u[
+              x] \[Rule] \(\@2\ \@\(\(-1\) + c[1]\^2\)\ JacobiSN[phase + x\ \
+c[1], \(-1\) + 1\/c[1]\^2]\)\/\@alpha, 
+          mod \[Rule] \(-1\) + 1\/c[1]\^2}}}\)], "Print"],
+
+Cell[BoxData[
+    InterpretationBox[\("Time Used:"\[InvisibleSpace]1.9799999999999898`\),
+      SequenceForm[ "Time Used:", 1.9799999999999898],
+      Editable->False]], "Print"],
+
+Cell[BoxData[
+    \(\*"\<\"\"\>"\)], "Print"],
+
+Cell[BoxData[
+    \("The (numerically and/or symbolically) tested final solutions:"\)], \
+"Print"],
+
+Cell[BoxData[
+    \({{{u[
+              x] \[Rule] \(-\(\(\@2\ \@\(\((\(-1\) + c[1])\)\ \((1 + \
+c[1])\)\)\ JacobiSN[phase + 
+                        x\ c[1], \(-\(\(\((\(-1\) + c[1])\)\ \((1 + 
+                                  c[1])\)\)\/c[1]\^2\)\)]\)\/\@alpha\)\), 
+          mod \[Rule] \(-\(\(\((\(-1\) + c[1])\)\ \((1 + 
+                        c[1])\)\)\/c[1]\^2\)\)}}, {{u[
+              x] \[Rule] \(\@2\ \@\(\((\(-1\) + c[1])\)\ \((1 + c[1])\)\)\ \
+JacobiSN[phase + x\ c[1], \(-\(\(\((\(-1\) + c[1])\)\ \((1 + \
+c[1])\)\)\/c[1]\^2\)\)]\)\/\@alpha, 
+          mod \[Rule] \(-\(\(\((\(-1\) + c[1])\)\ \((1 + 
+                        c[1])\)\)\/c[1]\^2\)\)}}}\)], "Output"]
+}, Open  ]]
+}, Open  ]]
+},
+FrontEndVersion->"4.1 for Microsoft Windows",
+ScreenRectangle->{{0, 1152}, {0, 791}},
+ScreenStyleEnvironment->"Presentation",
+WindowSize->{1122, 755},
+WindowMargins->{{1, Automatic}, {Automatic, 0}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{
+  "Info3217876677-8897281"->{
+    Cell[2102, 69, 1126, 16, 327, "Print",
+      CellTags->"Info3217876677-8897281"],
+    Cell[3231, 87, 789, 18, 95, "Print",
+      CellTags->"Info3217876677-8897281"]}
+  }
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{
+  {"Info3217876677-8897281", 52692, 1358}
+  }
+*)
+
+(*NotebookFileOutline
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[1727, 52, 159, 4, 204, "Subtitle"],
+Cell[1889, 58, 68, 1, 38, "Input"],
+Cell[1960, 61, 57, 1, 38, "Input"],
+
+Cell[CellGroupData[{
+Cell[2042, 66, 57, 1, 38, "Input"],
+Cell[2102, 69, 1126, 16, 327, "Print",
+  CellTags->"Info3217876677-8897281"],
+Cell[3231, 87, 789, 18, 95, "Print",
+  CellTags->"Info3217876677-8897281"]
+}, Open  ]],
+Cell[4035, 108, 309, 5, 70, "Text"],
+
+Cell[CellGroupData[{
+Cell[4369, 117, 441, 7, 107, "Input"],
+Cell[4813, 126, 82, 1, 28, "Print"],
+Cell[4898, 129, 4902, 127, 43, "Print"],
+Cell[9803, 258, 106, 2, 28, "Print"],
+Cell[9912, 262, 2623, 59, 75, "Print"],
+Cell[12538, 323, 179, 3, 28, "Print"],
+Cell[12720, 328, 92, 1, 28, "Print"],
+Cell[12815, 331, 264, 4, 51, "Message"],
+Cell[13082, 337, 67, 1, 28, "Print"],
+Cell[13152, 340, 178, 3, 28, "Print"],
+Cell[13333, 345, 96, 2, 28, "Print"],
+Cell[13432, 349, 75, 1, 28, "Print"],
+Cell[13510, 352, 173, 3, 29, "Print"],
+Cell[13686, 357, 68, 1, 28, "Print"],
+Cell[13757, 360, 713, 11, 143, "Print"],
+Cell[14473, 373, 178, 3, 28, "Print"],
+Cell[14654, 378, 72, 1, 28, "Print"],
+Cell[14729, 381, 278, 5, 78, "Print"],
+Cell[15010, 388, 178, 3, 28, "Print"],
+Cell[15191, 393, 100, 2, 28, "Print"],
+Cell[15294, 397, 98, 2, 28, "Print"],
+Cell[15395, 401, 334, 7, 77, "Print"],
+Cell[15732, 410, 178, 3, 28, "Print"],
+Cell[15913, 415, 45, 1, 28, "Print"],
+Cell[15961, 418, 98, 2, 28, "Print"],
+Cell[16062, 422, 364, 8, 87, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[16463, 435, 1815, 44, 85, "Input"],
+Cell[18281, 481, 82, 1, 28, "Print"],
+Cell[18366, 484, 4902, 127, 43, "Print"],
+Cell[23271, 613, 106, 2, 28, "Print"],
+Cell[23380, 617, 2623, 59, 75, "Print"],
+Cell[26006, 678, 147, 3, 28, "Print"],
+Cell[26156, 683, 92, 1, 28, "Print"],
+Cell[26251, 686, 264, 4, 51, "Message"],
+Cell[26518, 692, 67, 1, 28, "Print"],
+Cell[26588, 695, 147, 3, 28, "Print"],
+Cell[26738, 700, 96, 2, 28, "Print"],
+Cell[26837, 704, 75, 1, 28, "Print"],
+Cell[26915, 707, 173, 3, 29, "Print"],
+Cell[27091, 712, 68, 1, 28, "Print"],
+Cell[27162, 715, 713, 11, 143, "Print"],
+Cell[27878, 728, 179, 3, 28, "Print"],
+Cell[28060, 733, 72, 1, 28, "Print"],
+Cell[28135, 736, 278, 5, 78, "Print"],
+Cell[28416, 743, 178, 3, 28, "Print"],
+Cell[28597, 748, 71, 1, 28, "Print"],
+Cell[28671, 751, 98, 2, 28, "Print"],
+Cell[28772, 755, 334, 7, 77, "Print"],
+Cell[29109, 764, 211, 4, 44, "Message"],
+Cell[29323, 770, 178, 3, 28, "Print"],
+Cell[29504, 775, 45, 1, 28, "Print"],
+Cell[29552, 778, 69, 1, 28, "Print"],
+Cell[29624, 781, 364, 8, 87, "Output"]
+}, Open  ]],
+Cell[30003, 792, 114, 3, 45, "Text"],
+
+Cell[CellGroupData[{
+Cell[30142, 799, 294, 5, 84, "Input"],
+Cell[30439, 806, 191, 3, 51, "Message"],
+Cell[30633, 811, 211, 4, 44, "Message"],
+Cell[30847, 817, 389, 7, 138, "Output"]
+}, Open  ]],
+Cell[31251, 827, 218, 4, 70, "Text"],
+
+Cell[CellGroupData[{
+Cell[31494, 835, 365, 6, 84, "Input"],
+Cell[31862, 843, 84, 1, 28, "Print"],
+Cell[31949, 846, 211, 4, 44, "Message"],
+Cell[32163, 852, 111, 3, 26, "Message"],
+Cell[32277, 857, 5263, 94, 1258, "Output"]
+}, Open  ]],
+Cell[37555, 954, 196, 4, 45, "Text"],
+
+Cell[CellGroupData[{
+Cell[37776, 962, 295, 5, 61, "Input"],
+Cell[38074, 969, 82, 1, 28, "Print"],
+Cell[38159, 972, 1109, 31, 29, "Print"],
+Cell[39271, 1005, 111, 2, 28, "Print"],
+Cell[39385, 1009, 1683, 34, 75, "Print"],
+Cell[41071, 1045, 179, 3, 28, "Print"],
+Cell[41253, 1050, 92, 1, 28, "Print"],
+Cell[41348, 1053, 51, 1, 28, "Print"],
+Cell[41402, 1056, 179, 3, 28, "Print"],
+Cell[41584, 1061, 96, 2, 28, "Print"],
+Cell[41683, 1065, 75, 1, 28, "Print"],
+Cell[41761, 1068, 79, 1, 28, "Print"],
+Cell[41843, 1071, 68, 1, 28, "Print"],
+Cell[41914, 1074, 372, 6, 75, "Print"],
+Cell[42289, 1082, 179, 3, 28, "Print"],
+Cell[42471, 1087, 72, 1, 28, "Print"],
+Cell[42546, 1090, 690, 10, 191, "Print"],
+Cell[43239, 1102, 178, 3, 28, "Print"],
+Cell[43420, 1107, 100, 2, 28, "Print"],
+Cell[43523, 1111, 98, 2, 28, "Print"],
+Cell[43624, 1115, 443, 9, 132, "Print"],
+Cell[44070, 1126, 177, 3, 28, "Print"],
+Cell[44250, 1131, 45, 1, 28, "Print"],
+Cell[44298, 1134, 98, 2, 28, "Print"],
+Cell[44399, 1138, 584, 12, 140, "Output"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+Cell[45020, 1155, 297, 5, 61, "Input"],
+Cell[45320, 1162, 82, 1, 28, "Print"],
+Cell[45405, 1165, 1109, 31, 29, "Print"],
+Cell[46517, 1198, 111, 2, 28, "Print"],
+Cell[46631, 1202, 1474, 30, 52, "Print"],
+Cell[48108, 1234, 178, 3, 28, "Print"],
+Cell[48289, 1239, 92, 1, 28, "Print"],
+Cell[48384, 1242, 51, 1, 28, "Print"],
+Cell[48438, 1245, 179, 3, 28, "Print"],
+Cell[48620, 1250, 96, 2, 28, "Print"],
+Cell[48719, 1254, 75, 1, 28, "Print"],
+Cell[48797, 1257, 79, 1, 28, "Print"],
+Cell[48879, 1260, 68, 1, 28, "Print"],
+Cell[48950, 1263, 363, 6, 75, "Print"],
+Cell[49316, 1271, 178, 3, 28, "Print"],
+Cell[49497, 1276, 72, 1, 28, "Print"],
+Cell[49572, 1279, 646, 11, 214, "Print"],
+Cell[50221, 1292, 178, 3, 28, "Print"],
+Cell[50402, 1297, 100, 2, 28, "Print"],
+Cell[50505, 1301, 98, 2, 28, "Print"],
+Cell[50606, 1305, 397, 7, 132, "Print"],
+Cell[51006, 1314, 178, 3, 28, "Print"],
+Cell[51187, 1319, 45, 1, 28, "Print"],
+Cell[51235, 1322, 98, 2, 28, "Print"],
+Cell[51336, 1326, 681, 12, 231, "Output"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+

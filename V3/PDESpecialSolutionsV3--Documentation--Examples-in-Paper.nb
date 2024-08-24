@@ -1,0 +1,437 @@
+(************** Content-type: application/mathematica **************
+                     CreatedBy='Mathematica 5.0'
+
+                    Mathematica-Compatible Notebook
+
+This notebook can be used with any Mathematica-compatible
+application, such as Mathematica, MathReader or Publicon. The data
+for the notebook starts with the line containing stars above.
+
+To get the notebook into a Mathematica-compatible application, do
+one of the following:
+
+* Save the data starting with the line of stars above into a file
+  with a name ending in .nb, then open the file inside the
+  application;
+
+* Copy the data starting with the line of stars above to the
+  clipboard, then use the Paste menu command inside the application.
+
+Data for notebooks contains only printable 7-bit ASCII and can be
+sent directly in email or through ftp in text mode.  Newlines can be
+CR, LF or CRLF (Unix, Macintosh or MS-DOS style).
+
+NOTE: If you modify the data for this notebook not in a Mathematica-
+compatible application, you must delete the line below containing
+the word CacheID, otherwise Mathematica-compatible applications may
+try to use invalid cache data.
+
+For more information on notebooks and Mathematica-compatible 
+applications, contact Wolfram Research:
+  web: http://www.wolfram.com
+  email: info@wolfram.com
+  phone: +1-217-398-0700 (U.S.)
+
+Notebook reader applications are available free of charge from 
+Wolfram Research.
+*******************************************************************)
+
+(*CacheID: 232*)
+
+
+(*NotebookFileLineBreakTest
+NotebookFileLineBreakTest*)
+(*NotebookOptionsPosition[     12929,        346]*)
+(*NotebookOutlinePosition[     13613,        369]*)
+(*  CellTagsIndexPosition[     13569,        365]*)
+(*WindowFrame->Normal*)
+
+
+
+Notebook[{
+Cell[BoxData[
+    \( (*\ Last\ modified\ by\ Hereman\ on\ Sunday, \ March\ 21, \ 
+      2010\ at\ 17 : 40\ in\ Boulder\ *) \)], "Input"],
+
+Cell[BoxData[
+    \( (*\ If\ you\ saved\ the\ software\ in, \ for\ example, \ 
+      the\ subdirectory\ demopdespecialsolutions\ on\ drive\ D, \ 
+      then\ set\ the\ location\ with\ the\ command\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(\(\(SetDirectory["\<d:\\demopdespecialsolutions\>"]\)\(\ \)\)\)], \
+"Input"],
+
+Cell[BoxData[
+    \( (*\ Example : \ 
+        SetDirectory["\<d:\\data\\demoPDESpecialSolutions\>"]\ *) \)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example : \ 
+        SetDirectory["\<e:\\data\\demoPDESpecialSolutions\\\
+AnalyzeSolveMarch2010\>"]\ *) \)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Load\ the\ package\ PDESpecialSolutionsV3 . 
+          m\ with\ the\ command\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(Get["\<PDESpecialSolutionsV3.m\>"]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ 
+      To\ see\ information\ about\ the\ package\ execute\ the\ command\ below\
+\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(?? \ PDESpecialSolutions\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 1 : \ Korteweg - de\ Vries\ Equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], \ t]\  + \ alpha*u[x, t]*D[u[x, t], x]\  + \ 
+          D[u[x, t], {x, 3}]\  \[Equal] \ 0, \ 
+      u[x, t], \ {x, t}, \ {alpha}, \ Verbose\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Use\ the\ Form\ option\ to\ select\ either\ Tanh, \ Sech, \ 
+      SechTanh, \ Cn\ or\ \(\(Sn\)\(.\)\)\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], \ t]\  + \ alpha*u[x, t]*D[u[x, t], x]\  + \ 
+          D[u[x, t], {x, 3}]\  \[Equal] \ 0, \ 
+      u[x, t], \ {x, t}, \ {alpha}, \ Form \[Rule] sech]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 2 : \ 
+        Boussinesq\ Equation\ \((single\ equation)\)\ *) \)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Use\ the\ option\ Verbose\  \[Rule] \ 
+        True\ to\ see\ a\ trace\ of\ the\ main\ steps\ of\ the\ \(\(algorithm\
+\)\(.\)\)\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x, t], {t, 2}] - D[u[x, t], {x, 2}] + 
+            3*u[x, t]*D[u[x, t], {x, 2}] + 3*\((D[u[x, t], x])\)^2 + 
+            alpha*D[u[x, t], {x, 4}]\  \[Equal] \ 0}, \ {u[x, t]}, \ {x, 
+        t}, \ {alpha}, \ Verbose \[Rule] True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 3 : \ The\ Boussinesq\ System\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x, t], t] + D[v[x, t], x]\  \[Equal] \ 0, \ 
+        D[v[x, t], \ t] + D[u[x, t], \ x] - 3*u[x, t]*D[u[x, t], x] - 
+            alpha*D[u[x, t], {x, 3}]\  \[Equal] \ 0}, {u[x, t], 
+        v[x, t]}, \ {x, t}, \ {alpha}]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Use\ the\ SolveAlgebraicSystem\  \[Rule] \ 
+        False\ option\ to\ output\ the\ algebraic\ system\ for\ the\ \
+\(\(coefficients\)\(.\)\)\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x, t], t] + D[v[x, t], x]\  \[Equal] \ 0, \ 
+        D[v[x, t], \ t] + D[u[x, t], \ x] - 3*u[x, t]*D[u[x, t], x] - 
+            alpha*D[u[x, t], {x, 3}]\  \[Equal] \ 0}, \ {u[x, t], 
+        v[x, t]}, \ {x, t}, \ {alpha}, 
+      SolveAlgebraicSystem \[Rule] False]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 4 : \ Coupled\ KdV\ Equations\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x, t], t]\  - 
+            alpha\ *\ \((6\ *\ u[x, t]\ *\ D[u[x, t], x]\ \  + \ \ D[
+                    u[x, t], \ {x, 3}])\)\  + 
+            2\ *\ beta\ *\ v[x, t]*\ D[v[x, t], \ x]\ \  \[Equal] 0, 
+        D[v[x, t], t]\  + \ 3*u[x, t]*D[v[x, t], x]\  + 
+            D[v[x, t], {x, 3}]\  \[Equal] \ 0}, {u[x, t], \ v[x, t]}, {x, 
+        t}, {alpha, \ beta}, \ Form \[Rule] Sech]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 5 : \ A\ Modified\ 3 - D\ KdV\ Equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, y, z, t], \ t]\  + \ 6*u[x, y, z, t]^2*D[u[x, y, z, t], x]\  + \ 
+          D[u[x, y, z, t], {x, 1}, {y, 1}, {z, 1}]\  \[Equal] \ 0, \ 
+      u[x, y, z, t], \ {x, y, z, t}, \ {}, \ Form \[Rule] Sech]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 6 : \ \ Equation\ due\ to\ Gao\ and\ Tian\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x, t], \ t]\  - \ D[u[x, t], \ x]\  - \ 
+            2*v[x, t]\  \[Equal] \ 0, \ 
+        D[v[x, t], \ t]\  + \ 2*u[x, t]*w[x, t]\  \[Equal] \ 0, \ 
+        D[w[x, t], \ t]\  + \ 2*u[x, t]*v[x, t]\  \[Equal] \ 0}, \ {u[x, 
+          t], \ v[x, t], \ w[x, t]}, \ {x, t}, \ {}, \ 
+      Form \[Rule] SechTanh]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 7 : \ 
+        Zakharov - Kuznetsov\ KdV - type\ Equations\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, y, z, t], t]\  + \ alpha*u[x, y, z, t]*D[u[x, y, z, t], x]\  + 
+          D[u[x, y, z, t], \ {x, 3}] + D[u[x, y, z, t], x, \ y, y]\  + 
+          D[u[x, y, z, t], \ x, \ z, \ z]\  \[Equal] 0, 
+      u[x, y, z, t], {x, y, z, t}, {alpha}]\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, y, z, t], t]\  + \ alpha*u[x, y, z, t]*D[u[x, y, z, t], x]\  + 
+          D[u[x, y, z, t], \ {x, 3}] + D[u[x, y, z, t], \ x, \ y, y]\  + 
+          D[u[x, y, z, t], \ x, \ z, \ z]\  \[Equal] 0, 
+      u[x, y, z, t], {x, y, z, t}, \[IndentingNewLine]{alpha}, \ 
+      Form \[Rule] Sech]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 8 : \ 
+        Modified\ KdV - 
+          ZK\ Equation\ \((due\ to\ Das\ and\ Verheest)\)\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, y, z, t], \ t]\  + 
+          alpha\ *\ u[x, y, z, t]\ ^\ 2\ *\ D[u[x, y, z, t], x]\  + \ 
+          D[u[x, y, z, t], \ {x, 3}] + D[u[x, y, z, t], \ x, \ y, y]\  + 
+          D[u[x, y, z, t], \ x, \ z, \ z]\  \[Equal] 0, 
+      u[x, y, z, t], {x, y, z, t}, {alpha}]\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, y, z, t], \ t]\  + 
+          alpha\ *\ u[x, y, z, t]\ ^\ 2\ *\ D[u[x, y, z, t], x]\  + \ 
+          D[u[x, y, z, t], \ {x, 3}] + D[u[x, y, z, t], \ x, \ y, y]\  + 
+          D[u[x, y, z, t], \ x, \ z, \ z]\  \[Equal] 0, 
+      u[x, y, z, t], {x, y, z, t}, {alpha}, \ Form \[Rule] Sech]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 9 : \ 
+        Generalized\ Kuramoto - Sivashinsky\ Equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t]\  + \ u[x, t]*\ D[u[x, t], x]\  + \ D[u[x, t], {x, 2}] + 
+          alpha*\ D[u[x, t], {x, 3}]\  + \ D[u[x, t], {x, 4}]\  \[Equal] \ 0, 
+      u[x, t], {x, t}, {alpha}]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 10 : \ Coupled\ KdV\ Equations\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x, t], t]\  - 
+            alpha\ *\ \((6\ *\ u[x, t]\ *\ D[u[x, t], x]\ \  + \ \ D[
+                    u[x, t], \ {x, 3}])\)\  + 
+            2\ *\ beta\ *\ v[x, t]*\ D[v[x, t], \ x]\ \  \[Equal] 0, 
+        D[v[x, t], t]\  + \ 3*u[x, t]*D[v[x, t], x]\  + 
+            D[v[x, t], {x, 3}]\  \[Equal] \ 0}, {u[x, t], \ v[x, t]}, {x, 
+        t}, {alpha, \ beta}, \ Form \[Rule] Cn]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 11 : \ 
+        Another\ Coupled\ KdV\ Systems\ \((due\ to\ Guha\ and\ Roy)\)\ *) \
+\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x, t], t]\  + \ \ \[Alpha]\ *\ v[x, t]*
+              D[v[x, t], x]\  + \ \[Beta]*u[x, t]*
+              D[u[x, t], x]\  + \[Gamma]\ *\ D[u[x, t], {x, 3}]\  \[Equal] 0, 
+        D[v[x, t], t]\  + \ \[Delta]*D[u[x, t]*v[x, t], x]\  + \[Epsilon]*
+              v[x, t]*D[v[x, t], x]\  \[Equal] 0}, {u[x, t], \ v[x, t]}, {x, 
+        t}, {\[Alpha], \ \[Beta], \ \[Gamma]\ , \ \[Delta], \[Epsilon]}, \ 
+      Form \[Rule] Sech]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 12 : \ Fisher\ Equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\ \)\(PDESpecialSolutions[{D[u[x, t], t]\  - D[u[x, t], {x, 2}]\  - 
+            u[x, t]*\((1 - u[x, t])\)\  \[Equal] \ 0}, {u[x, t]}, {x, 
+        t}, {}]\)\)\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 14 : \ FitzHugh - Nagumo\ Equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{beta*D[v[z], z]\  + \ 
+            Sqrt[2]*D[v[z], \ {z, 2}]\  - 
+            Sqrt[2]*v[
+                z]*\((1 - Sqrt[2]*v[z])\)*\((alpha - 
+                  Sqrt[2]*v[z])\)\  \[Equal] \ 0}, {v[z]}, {z}, {alpha, \ 
+        beta}]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 15 : \ A\ Degenerate\ Hamiltonian\ System\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x, t], t]\  - D[u[x, t], x]\  - 
+            2*v[x, t]\  \[Equal] \ 0, 
+        D[v[x, t], t]\  - 2*epsilon*u[x, t]*v[x, t]\  \[Equal] 0}, {u[x, t], 
+        v[x, t]}, {x, t}, {epsilon}, \ Form \[Rule] SechTanh]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 16 : \ 
+        The\ Combined\ KdV - mKdV\ Equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t]\  + 6*alpha*u[x, t]*D[u[x, t], x]\  + 
+          6*beta*u[x, t]^2*D[u[x, t], x]\  + 
+          gamma*D[u[x, t], \ {x, 3}]\  \[Equal] 0, 
+      u[x, t], {x, t}, {alpha, \ beta, \ gamma}]\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[
+      D[u[x, t], t]\  + 6*alpha*u[x, t]*D[u[x, t], x]\  + 
+          6*beta*u[x, t]^2*D[u[x, t], x]\  + 
+          gamma*D[u[x, t], \ {x, 3}]\  \[Equal] 0, 
+      u[x, t], {x, t}, {alpha, \ beta, \ gamma}, \ 
+      Form \[Rule] SechTanh]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 17 : \ Duffing\ Equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x], \ {x, \ 2}]\  + \ u[x]\  - \ 
+            alpha*u[x]^3\  \[Equal] \ 0}, \ u[x], \ {x}, \ {alpha}, \ 
+      Form \[Rule] Cn]\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{D[u[x], \ {x, \ 2}]\  + \ u[x]\  - \ 
+            alpha*u[x]^3\  \[Equal] \ 0}, \ u[x], \ {x}, \ {alpha}, \ 
+      Form \[Rule] Tanh]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Example\ 18 : \ Another\ Fisher - type\ Equation\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(generalizedfisherequation\  = \ \ u[x, t]*D[u[x, t], t]\  - 
+        u[x, t]*D[u[x, t], {x, 2}]\  - 
+        D[u[x, t], 
+            x]^2 - \(\(u[x, t]^2\)\(*\)\((1 - u[x, t]^3)\)\(\ \)\)\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{generalizedfisherequation\  \[Equal] 0}, \ 
+      u[x, t], \ {x, t}, \ {}, \ Form \[Rule] Tanh, \ 
+      Verbose\  \[Rule] \ True]\)], "Input"],
+
+Cell[BoxData[
+    \( (*\ Transform\ the\ generalized\ Fisher\ equation\ by\ setting\ u[x, 
+            t]\  = \ v[x, t]^\((2/3)\)\ *) \)], "Input"],
+
+Cell[BoxData[
+    \(transformedgeneralizedfisherequation\  = \ 
+      generalizedfisherequation\  /. \[IndentingNewLine]{u[x, 
+              t]\ \  \[Rule] \ 
+            v[x, t]^\((2/3)\), \ \(\(Derivative[m_, n_]\)[u]\)[x, 
+              t]\  \[Rule] \ D[v[x, t]^\((2/3)\), {x, m}, {t, n}]}\)], "Input"],
+
+Cell[BoxData[
+    \(\(\(\[IndentingNewLine]\)\(transformedfisherequation\  = 
+      Numerator[\ 
+        Factor[transformedgeneralizedfisherequation]]\)\)\)], "Input"],
+
+Cell[BoxData[
+    \(PDESpecialSolutions[{transformedfisherequation\  \[Equal] 0}, \ 
+      v[x, t], \ {x, t}, \ {}, \ Form \[Rule] Tanh, \ 
+      Verbose\  \[Rule] \ True]\)], "Input"]
+},
+FrontEndVersion->"5.0 for Microsoft Windows",
+ScreenRectangle->{{0, 1280}, {0, 715}},
+ScreenStyleEnvironment->"Presentation",
+WindowSize->{1009, 651},
+WindowMargins->{{0, Automatic}, {Automatic, 0}}
+]
+
+(*******************************************************************
+Cached data follows.  If you edit this Notebook file directly, not
+using Mathematica, you must remove the line containing CacheID at
+the top of  the file.  The cache data will then be recreated when
+you save this file from within Mathematica.
+*******************************************************************)
+
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+
+(*NotebookFileOutline
+Notebook[{
+Cell[1754, 51, 136, 2, 38, "Input"],
+Cell[1893, 55, 214, 3, 84, "Input"],
+Cell[2110, 60, 96, 2, 38, "Input"],
+Cell[2209, 64, 117, 2, 38, "Input"],
+Cell[2329, 68, 142, 3, 38, "Input"],
+Cell[2474, 73, 119, 2, 38, "Input"],
+Cell[2596, 77, 67, 1, 38, "Input"],
+Cell[2666, 80, 123, 3, 38, "Input"],
+Cell[2792, 85, 57, 1, 38, "Input"],
+Cell[2852, 88, 88, 1, 38, "Input"],
+Cell[2943, 91, 228, 4, 61, "Input"],
+Cell[3174, 97, 145, 2, 38, "Input"],
+Cell[3322, 101, 221, 4, 61, "Input"],
+Cell[3546, 107, 111, 2, 38, "Input"],
+Cell[3660, 111, 170, 3, 38, "Input"],
+Cell[3833, 116, 287, 4, 84, "Input"],
+Cell[4123, 122, 81, 1, 38, "Input"],
+Cell[4207, 125, 277, 4, 84, "Input"],
+Cell[4487, 131, 183, 3, 61, "Input"],
+Cell[4673, 136, 322, 5, 84, "Input"],
+Cell[4998, 143, 81, 1, 38, "Input"],
+Cell[5082, 146, 441, 7, 130, "Input"],
+Cell[5526, 155, 91, 1, 38, "Input"],
+Cell[5620, 158, 266, 4, 107, "Input"],
+Cell[5889, 164, 93, 1, 38, "Input"],
+Cell[5985, 167, 365, 6, 84, "Input"],
+Cell[6353, 175, 110, 2, 38, "Input"],
+Cell[6466, 179, 303, 5, 107, "Input"],
+Cell[6772, 186, 352, 6, 130, "Input"],
+Cell[7127, 194, 141, 3, 38, "Input"],
+Cell[7271, 199, 332, 6, 107, "Input"],
+Cell[7606, 207, 353, 6, 107, "Input"],
+Cell[7962, 215, 112, 2, 38, "Input"],
+Cell[8077, 219, 242, 4, 84, "Input"],
+Cell[8322, 225, 82, 1, 38, "Input"],
+Cell[8407, 228, 439, 7, 130, "Input"],
+Cell[8849, 237, 131, 3, 38, "Input"],
+Cell[8983, 242, 481, 7, 130, "Input"],
+Cell[9467, 251, 75, 1, 38, "Input"],
+Cell[9545, 254, 196, 3, 61, "Input"],
+Cell[9744, 259, 86, 1, 38, "Input"],
+Cell[9833, 262, 286, 6, 107, "Input"],
+Cell[10122, 270, 93, 1, 38, "Input"],
+Cell[10218, 273, 269, 4, 84, "Input"],
+Cell[10490, 279, 103, 2, 38, "Input"],
+Cell[10596, 283, 259, 5, 84, "Input"],
+Cell[10858, 290, 291, 6, 107, "Input"],
+Cell[11152, 298, 76, 1, 38, "Input"],
+Cell[11231, 301, 185, 3, 61, "Input"],
+Cell[11419, 306, 187, 3, 61, "Input"],
+Cell[11609, 311, 91, 1, 38, "Input"],
+Cell[11703, 314, 220, 4, 61, "Input"],
+Cell[11926, 320, 184, 3, 61, "Input"],
+Cell[12113, 325, 147, 2, 38, "Input"],
+Cell[12263, 329, 305, 5, 61, "Input"],
+Cell[12571, 336, 167, 3, 61, "Input"],
+Cell[12741, 341, 184, 3, 61, "Input"]
+}
+]
+*)
+
+
+
+(*******************************************************************
+End of Mathematica Notebook file.
+*******************************************************************)
+
